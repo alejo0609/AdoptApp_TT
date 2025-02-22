@@ -145,6 +145,42 @@ public class Mision1ProblemarioDeProgramacion {
                     
                     break;                   
                     
+                    case 23:
+                        
+                        //int  = 2024;
+                        System.out.print("Ingrese el año para continuar"); 
+                        int anoPascua = scanner.nextInt();
+                        double dia;
+                        double A = anoPascua % 19 ;
+                        double B = anoPascua % 4;
+                        double C = anoPascua % 7;
+                        double D = (19*A+24)%30;
+                        double E = (2*B+4*C+6*D+5) % 7;
+                        double N = (22+D+E);
+                        if( N>31 ){
+                            dia = N-31;
+                            System.out.println("DÍA = "+dia);
+                            System.out.println("MES = ABRIL");
+                        }
+                        else if(N==31){
+                            dia=N;
+                            System.out.println("DÍA = "+ dia);
+                            System.out.println("MES = MARZO");
+                        }
+                        else{
+                            dia = N-31;
+                            System.out.println("DÍA = "+dia);
+                            System.out.println("MES = MARZO");
+                        }
+                        /*
+                        System.out.println("A: "+A);
+                        System.out.println("B: "+B);
+                        System.out.println("C: "+C);
+                        System.out.println("D: "+D);
+                        System.out.println("E: "+E);
+                        System.out.println("N: "+N);
+                        */
+                    break;
                     
                 case 0:
                     System.out.println("Saliendo del programa...");
