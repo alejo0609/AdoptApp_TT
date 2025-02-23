@@ -5,7 +5,6 @@ import java.util.Scanner; // Importar la clase Scanner
 
 
 public class Mision1ProblemarioDeProgramacion {
-    
     public static int anoBisiesto(int ano){
         
         int residuo;
@@ -22,13 +21,99 @@ public class Mision1ProblemarioDeProgramacion {
                 }
             }
             bisiesto = 1;
-            
+
         }
         else{
             bisiesto = 1;
         }   
-        return(bisiesto);
+    return(bisiesto);
 }
+    
+    public static int diaDeManana(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el año: "); 
+        int ano = scanner.nextInt();
+        anoBisiesto(ano);
+        int dia=0;
+        int mes=0;
+
+        if(anoBisiesto(ano) == 1){
+            System.out.println("Ingrese el mes: "); 
+            mes = scanner.nextInt();
+            if(mes>0 && mes<=12){
+                System.out.println("Ingrese el dia: "); 
+                dia = scanner.nextInt();
+                int newday=dia;
+                int newmes=mes;
+                int newyear= ano;
+                if(dia>0 && dia<=31){
+
+                    // MESES DE 30 DIAS
+                    if(mes==4 || mes== 6 || mes==9 || mes== 11){
+                        if(dia == 30){
+                            newday = dia-29; 
+                            newmes = mes+1;
+                        }
+                        // Resto de días
+                        else{
+                            newday = dia+1; 
+                        }
+                    }
+
+                    // MESES DE 31 DIAS
+                    else if (mes == 2){
+                        if(dia == 28){
+                            newday = dia-27; 
+                            newmes = mes+1;
+                        }
+                        else{
+                            newday = dia+1; 
+                        }
+                    }    
+                    else{ 
+                        // Diciembre
+                        if(mes == 12){
+                            if(dia == 31){
+                                newday = dia-30; 
+                                newmes = mes-11;
+                                newyear = ano+1;
+                            }
+                            else{
+                                newday = dia+1; 
+                            }
+                        }
+                        // Meses de 31 dias ferentes a Diciembre
+                        else{
+                            if(dia == 31){
+                                newday = dia-30; 
+                                newmes = mes+1;
+                            }
+                            else{
+                                newday = dia+1; 
+                            }
+                        }  
+                    }
+                    // ACA VAN LAS IMPRESIONES
+                    System.out.println("La fecha para mañana será:  " +newday+"/"+newmes+"/"+newyear+"\n"); 
+                    newday = dia; 
+                    newmes = mes;
+                    newyear = ano;
+                }
+
+                else{
+                System.out.println("Día invalido o fuera del limite"); 
+                }
+            }
+            else{
+                System.out.println("Mes invalido o fuera del limite"); 
+            }        
+        }
+        else{
+           System.out.println("Vuelva a intentarlo con un año que no sea Bisiesto ");         
+        }
+    
+        return 0;
+    }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -160,39 +245,8 @@ public class Mision1ProblemarioDeProgramacion {
                     break;  
                     
                 case 9:
-                    System.out.println("Ingrese el año: "); 
-                    int ano = scanner.nextInt();
-                    anoBisiesto(ano);
-                    if(anoBisiesto(ano) == 1){
-                        System.out.println("Ingrese el mes: "); 
-                        int mes = scanner.nextInt();
-                        if(mes>0 && mes<=12){
-                            System.out.println("Ingrese el dia: "); 
-                            int dia = scanner.nextInt();
-                            if(dia>0 && dia<=31){
-                                
-                                
-                                // ANALIZAR ESTA PARTE DEL CAMBIO DEL MES
-                                if(dia == 31){
-                                    if(mes == 12){
-                                        System.out.println("Mañana será: 01"+"/"+mes+"/"+ano);
-                                    }
-                                }
-                                else{
-                                    System.out.println("Mañana será: "+dia+"/"+mes+"/"+ano);
-                                }
-                            }
-                            else{
-                            System.out.println("Día invalido o fuera del limite"); 
-                            }
-                        }
-                        else{
-                            System.out.println("Mes invalido o fuera del limite"); 
-                        }        
-                    }
-                    else{
-                       System.out.println("Vuelva a intentarlo con un año que no sea Bisiesto ");         
-                    }
+                    diaDeManana();
+                    
 
                     break;
                      
@@ -202,7 +256,7 @@ public class Mision1ProblemarioDeProgramacion {
 
                     System.out.println("Ingrese el año para continuar"); 
                     int anoPascua = scanner.nextInt();
-                    double dia;
+                    double day;
                     double A = anoPascua % 19 ;
                     double B = anoPascua % 4;
                     double C = anoPascua % 7;
@@ -212,18 +266,18 @@ public class Mision1ProblemarioDeProgramacion {
 
 
                     if( N>31 ){
-                        dia = N-31;
-                        System.out.println("DÍA = "+dia);
+                        day = N-31;
+                        System.out.println("DÍA = "+day);
                         System.out.println("MES = ABRIL");
                     }
                     else if(N==31){
-                        dia=N;
-                        System.out.println("DÍA = "+ dia);
+                        day=N;
+                        System.out.println("DÍA = "+ day);
                         System.out.println("MES = MARZO");
                     }
                     else{
-                        dia = N-31;
-                        System.out.println("DÍA = "+dia);
+                        day = N-31;
+                        System.out.println("DÍA = "+day);
                         System.out.println("MES = MARZO");
                     }
                 break;
