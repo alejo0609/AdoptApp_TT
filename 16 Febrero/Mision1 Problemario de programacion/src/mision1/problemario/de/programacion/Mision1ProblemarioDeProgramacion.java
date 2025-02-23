@@ -118,18 +118,22 @@ public class Mision1ProblemarioDeProgramacion {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
-        float num1, num2, num3; // Declaramos las variables, pero las inicializamos dentro de cada caso
+        float num1, num2; // Declaramos las variables, pero las inicializamos dentro de cada caso
 
         do {
             System.out.println("\nMenú de Ejercicios\n");
-            System.out.println( "1. Determinar si un número es par o impar\n"
-                    +           "2. Determinar si un número entero es positivo o negativo\n"
-                    +           "3. Realizar suma, resta y multiplicación de dos números\n"
-                    +           "4. Calcular el mayor de los números ingresados\n"
-                    +           "5. Calcular el mayor de 3 números enteros ingresados\n"
-                    +           "6. Calcular el mayor de 4 números enteros ingresados\n"
-                    +           "7. Calcular el estado del agua según su temperatura\n" 
-                    +           "8. Calcular si un año es bisiesto o no\n\n"
+            System.out.println( "1.01. Determinar si un número es par o impar\n"
+                    +           "1.02. Determinar si un número entero es positivo o negativo\n"
+                    +           "1.03. Realizar suma, resta y multiplicación de dos números\n"
+                    +           "1.04. Calcular el mayor de los números ingresados\n"
+                    +           "1.05. Calcular el mayor de 3 números enteros ingresados\n"
+                    +           "1.06. Calcular el mayor de 4 números enteros ingresados\n"
+                    +           "1.07. Calcular el estado del agua según su temperatura\n" 
+                    +           "1.08. Calcular si un año es bisiesto o no\n"
+                    +           "1.09. Calcular el día de mañana\n"
+                    +           "1.10. Calcular el día de mañana\n"
+                    +           "1.23. Determinar día de la pascua\n\n"
+                    +           "2.01. Determinar día de la pascua\n\n"
                     
                     +           "0. Salir\n\n\n"
                     +           "Seleccione una opción: \n");
@@ -246,8 +250,18 @@ public class Mision1ProblemarioDeProgramacion {
                     
                 case 9:
                     diaDeManana();
+                    break;
+                
+                case 10:
+                    System.out.println("Ingrese un mes en número "); 
+                    int num3 = scanner.nextInt();
+                    String[] meses = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
                     
-
+                    for(int i=0; i<=12; i++){
+                        if(i==num3){
+                            System.out.println("El mes ingresado corresponde a: "+meses[i-1]);
+                        }
+                    }
                     break;
                      
                     
