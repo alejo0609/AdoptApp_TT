@@ -9,7 +9,10 @@ import java.util.ArrayList;
 /**
  *
  * @author Alejandro
+ * @see ver Inventario
+ * @description 
  */
+
 public class Inventario {
     private ArrayList<Vehiculo> vehiculos;
             

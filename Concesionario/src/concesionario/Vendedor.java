@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package concesionario;
 
 /**
@@ -11,26 +7,33 @@ package concesionario;
  */
 public class Vendedor extends Persona{
     
-    private String codigo_vendedor;
-
-    // CONSTRUCTOR
-    public Vendedor(String codigo_vendedor, String cedula, String nombre_completo, String direccion, String telefono) {
-        super(cedula, nombre_completo, direccion, telefono);
-        this.codigo_vendedor = codigo_vendedor;
+   
+    private static int contadorVendedores = 0; // Contador global de vendedores
+    private String idVendedor;
+    
+    private String generarID() {
+    contadorVendedores++; // Aumentar contador
+    return String.format("v%02", contadorVendedores); // Formato v01, v02, v03...
     }
 
-    // GETTERS AND SETTERS
+    // CONSTRUCTOR
+    public Vendedor( String cedula, String nombre_completo, String direccion, String telefono) {
+        super(cedula, nombre_completo, direccion, telefono);
+        this.idVendedor = generarID();
+    }
+
+    // GETTERS Y SETTERS
     public String getCodigo_vendedor() {
-        return codigo_vendedor;
+        return idVendedor;
     }
 
     public void setCodigo_vendedor(String codigo_vendedor) {
-        this.codigo_vendedor = codigo_vendedor;
+        this.idVendedor = idVendedor;
     }
 
     @Override
     public String toString() {
-        return "Hemos creado un Vendedor con codigo_vendedor=" + codigo_vendedor;
+        return "Hemos creado un Vendedor con código: " + idVendedor;
     }
     
     
