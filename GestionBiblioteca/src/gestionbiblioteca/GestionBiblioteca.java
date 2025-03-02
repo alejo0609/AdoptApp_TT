@@ -1,11 +1,30 @@
+
+
+/**
+ * Clase principal de la gestión de la biblioteca.
+ */
 package gestionbiblioteca;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/**
+ * Clase que maneja las operaciones del sistema de biblioteca.
+ */
 public class GestionBiblioteca {
+    
+    /**
+     * Constructor que inicializa la biblioteca.
+     */
     private static Biblioteca biblioteca = new Biblioteca();
 
+    
+    
+    /**
+     * Método principal para ejecutar el menú de opciones.
+     * @param args Argumentos de línea de comandos.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
@@ -29,7 +48,7 @@ public class GestionBiblioteca {
                             String titulo = scanner.nextLine();
                             System.out.print("Ingrese autor: ");
                             String autor = scanner.nextLine();
-                            System.out.print("Ingrese ISBN: ");
+                            System.out.print("Ingrese ISBN (10 ó 13 dígitos): ");
                             String isbn = scanner.nextLine();
                             biblioteca.agregarLibro(new Libro(titulo, autor, isbn));
                         } catch (Exception e) {

@@ -8,6 +8,14 @@ public class Biblioteca {
         this.libros = new ArrayList<>();
     }
 
+    
+    /**
+     * Agrega un libro a la biblioteca.
+     * @param titulo El título del libro.
+     * @param autor El autor del libro.
+     * @param isbn El ISBN del libro.
+     * @throws IllegalArgumentException Si el ISBN no es válido.
+     */
     public void agregarLibro(Libro libro) {
         try {
             libros.add(libro);
@@ -17,6 +25,12 @@ public class Biblioteca {
         }
     }
 
+    /**
+     * Elimina un libro de la biblioteca.
+     * @param titulo El título del libro.
+     * @param autor El autor del libro.
+     * @param isbn El ISBN del libro.
+     */
     public void eliminarLibro(String isbn) {
         try {
             boolean eliminado = libros.removeIf(libro -> libro.getIsbn().equals(isbn));

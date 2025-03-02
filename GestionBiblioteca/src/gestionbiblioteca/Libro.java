@@ -48,7 +48,7 @@ public class Libro {
         if (isbn == null || isbn.trim().isEmpty()) {
             throw new IllegalArgumentException("El ISBN no puede estar vacío.");
         }
-        if (!isbn.matches("\\d{10,13}")) { // Verifica que tenga 10 o 13 dígitos
+        if (!isbn.matches("\\d{10}|\\d{13}")) { // Verifica que tenga entre 10 y 13 dígitos
             throw new IllegalArgumentException("El ISBN debe tener 10 o 13 dígitos numéricos.");
         }
         this.isbn = isbn;
