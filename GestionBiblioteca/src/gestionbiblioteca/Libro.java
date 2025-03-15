@@ -4,6 +4,7 @@ package gestionbiblioteca;
  * Clase que representa un libro con título, autor e ISBN.
  */
 public class Libro {
+
     private String titulo;
     private String autor;
     private String isbn;
