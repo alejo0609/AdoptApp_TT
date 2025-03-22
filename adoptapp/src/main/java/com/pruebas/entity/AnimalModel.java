@@ -12,6 +12,9 @@ public class AnimalModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAnimal;
+    public void setIdAnimal(Integer id) {
+        this.idAnimal = id;
+    }
 
     @Column(nullable = false, length = 155)
     private String nombre_animal;
