@@ -19,10 +19,11 @@ public class AnimalModel {
     @Column(nullable = false, length = 155)
     private String nombre_animal;
 
-    @ManyToOne
+    //@ManyToOne
     //@OneToMany(targetEntity = tipo_animal_model.class, cascade = CascadeType.Persist )
-    @JoinColumn(name = "idtipoanimal", nullable = false)
-    private TipoAnimalModel tipo_animal;
+    //@JoinColumn(name = "idtipoanimal", nullable = false)
+    //@Column(nullable = false)
+    //private TipoAnimalModel tipo_animal;
 
     @Column(nullable = false, length = 45)
     private String raza;
