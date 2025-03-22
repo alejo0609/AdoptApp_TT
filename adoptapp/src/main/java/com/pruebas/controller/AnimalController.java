@@ -1,4 +1,4 @@
-package com.pruebas.model;
+package com.pruebas.controller;
 
 import com.pruebas.model.AnimalModel;
 //import com.pruebas.service.AnimalService;
@@ -16,11 +16,13 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
 
+ 
     // ✅ Obtener todos los animales
     @GetMapping
     public List<AnimalModel> getAllAnimals() {
         return animalService.findAll();
     }
+  
 
     // ✅ Obtener un animal por ID
     @GetMapping("/{id}")
