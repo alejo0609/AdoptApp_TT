@@ -19,11 +19,12 @@ public class AnimalModel {
     @Column(nullable = false, length = 155)
     private String nombre_animal;
 
-    //@ManyToOne
-    //@OneToMany(targetEntity = tipo_animal_model.class, cascade = CascadeType.Persist )
-    //@JoinColumn(name = "idtipoanimal", nullable = false)
-    //@Column(nullable = false)
-    //private TipoAnimalModel tipo_animal;
+    // Relacion de Uno a Uno con  id_tipo_animal
+    @OneToOne
+    @JoinColumn(name = "idtipoanimal", referencedColumnName = "idTipoAnimal", nullable = false)
+    private TipoAnimalModel tipoAnimal;
+
+ 
 
     @Column(nullable = false, length = 45)
     private String raza;

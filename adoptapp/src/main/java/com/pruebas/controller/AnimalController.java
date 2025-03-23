@@ -1,7 +1,6 @@
 package com.pruebas.controller;
 
 import com.pruebas.model.AnimalModel;
-//import com.pruebas.service.AnimalService;
 import com.pruebas.service.animales.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -11,6 +11,8 @@ public class DetalleAdopcionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iddetalleadopcion;
+    @Column(name = "iddetalleadopcion") 
+    private int idDetalleAdopcion;
+
     
 }
