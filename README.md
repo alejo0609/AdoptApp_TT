@@ -10,3 +10,6 @@ INSERT INTO TIPODOCUMENTOS (nombre_tipo_documento) VALUES ("C√©dula de Ciudadan√
 
 
 "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -property catalog_productDisplayVersion
+
+
+devenv /version
