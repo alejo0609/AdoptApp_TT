@@ -17,7 +17,7 @@ public void setIdUsuario(Integer id) {
     this.idUsuario = id;
 }
 
-@Column(nullable = false, length = 155)
+@Column(nullable = false, length = 155, unique = true)
 private String email;
 
 @Column(nullable = false, length = 155)

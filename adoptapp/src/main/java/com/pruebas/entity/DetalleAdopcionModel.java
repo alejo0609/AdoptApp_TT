@@ -12,7 +12,7 @@ public class DetalleAdopcionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddetalleadopcion") 
-    private int idDetalleAdopcion;
+    private int iddetalleadopcion;
 
     
 }
