@@ -1,12 +1,19 @@
-# React + Vite
+instalar
+npm install swiper
+npm install animate.css
+npm install react-icons
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+autenticación real con Google y Facebook, instala Firebase:
+npm install firebase
 
-Currently, two official plugins are available:
+Instalar React Router
+npm install react-router-dom
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+para la pagina tienda
+npm install @react-google-maps/api
+npm update @react-google-maps/api
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+//no sirvio//
+npm install react-leaflet leaflet
+npm install axios react-leaflet leaflet
