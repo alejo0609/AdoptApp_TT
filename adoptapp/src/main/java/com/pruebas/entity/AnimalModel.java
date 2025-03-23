@@ -21,8 +21,6 @@ public class AnimalModel {
 
 
 
- 
-
     @Column(nullable = false, length = 45)
     private String raza;
 

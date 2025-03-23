@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/historia_animal")
+@RequestMapping("/historia_animales")
 public class HistoriaAnimalController {
 
     @Autowired
