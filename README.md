@@ -13,3 +13,7 @@ INSERT INTO TIPODOCUMENTOS (nombre_tipo_documento) VALUES ("C√©dula de Ciudadan√
 
 
 devenv /version
+
+
+reg query "HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VS7"
+
