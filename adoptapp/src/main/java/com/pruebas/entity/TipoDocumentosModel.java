@@ -5,16 +5,16 @@ import lombok.Data;
 
 
 @Entity
-@Table(name = "tipo_animal")
+@Table(name = "tipo_documentos")
 @Data
-public class TipoAnimalModel {
+public class TipoDocumentosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private int idtipoanimal;
 
-    @Column(nullable = false, length = 155)
-    private String nombre_tipo_animal;
+    @Column(nullable = false, length = 45)
+    private String nombre_tipo_documento;
   
 }
