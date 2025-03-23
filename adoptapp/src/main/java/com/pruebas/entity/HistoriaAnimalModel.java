@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "historia_animal")
 @Data
 public class HistoriaAnimalModel {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idhistoriaanimal;

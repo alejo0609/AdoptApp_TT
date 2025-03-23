@@ -34,12 +34,13 @@ private String ciudad;
 
 @Column(nullable = false, length = 155, unique = true)
 private String email;
+}
 
+/*
 @Column(nullable = false, length = 155)
 private String password;
 
 @Column(nullable = false)
 private Boolean estado_datosPersonales;
+*/
 
-
-}
