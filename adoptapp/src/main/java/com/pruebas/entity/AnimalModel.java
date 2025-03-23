@@ -19,10 +19,7 @@ public class AnimalModel {
     @Column(nullable = false, length = 155)
     private String nombre_animal;
 
-    // Relacion de Uno a Uno con  id_tipo_animal
-    @OneToOne
-    @JoinColumn(name = "idtipoanimal", referencedColumnName = "idTipoAnimal", nullable = false)
-    private TipoAnimalModel tipoAnimal;
+
 
  
 
