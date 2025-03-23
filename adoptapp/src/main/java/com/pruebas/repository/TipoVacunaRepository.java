@@ -1,4 +1,4 @@
-package com.pruebas.model;
+package com.pruebas.repository;
 
 
 import com.pruebas.model.TipoVacunaModel;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface TipoVacunaRepo extends JpaRepository<TipoVacunaModel, Integer> {
+public interface TipoVacunaRepository extends JpaRepository<TipoVacunaModel, Integer> {
 
 }

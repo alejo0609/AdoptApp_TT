@@ -1,4 +1,4 @@
-package com.pruebas.model;
+package com.pruebas.repository;
 
 
 import com.pruebas.model.HistoriaAnimalModel;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface HistoriaAnimalRepo extends JpaRepository<HistoriaAnimalModel, Integer> {
+public interface HistoriaAnimalRepository extends JpaRepository<HistoriaAnimalModel, Integer> {
 
 }

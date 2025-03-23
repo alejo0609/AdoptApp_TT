@@ -1,4 +1,4 @@
-package com.pruebas.model;
+package com.pruebas.repository;
 
 
 import com.pruebas.model.DetalleAdopcionModel;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface DetalleAdopcionRepo extends JpaRepository<DetalleAdopcionModel, Integer> {
+public interface DetalleAdopcionRepository extends JpaRepository<DetalleAdopcionModel, Integer> {
 
 }

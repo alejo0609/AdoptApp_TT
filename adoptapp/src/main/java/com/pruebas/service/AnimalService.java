@@ -1,19 +1,21 @@
-//package com.pruebas.model;
 package com.pruebas.service.animales;
 
 import com.pruebas.model.AnimalModel;
-import com.pruebas.repository.AnimalRepo;
+import com.pruebas.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class AnimalService {
 
     @Autowired
-    private AnimalRepo animalRepo;
+    private AnimalRepository animalRepo;
 
     // ✅ Obtener todos los animales
     public List<AnimalModel> findAll() {
@@ -30,8 +32,11 @@ public class AnimalService {
         return animalRepo.save(animal);
     }
 
+
+
     // ✅ Eliminar un animal por ID
     public void deleteById(Integer id) {
         animalRepo.deleteById(id);
     }
 }
+

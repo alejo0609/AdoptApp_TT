@@ -1,4 +1,4 @@
-package com.pruebas.model;
+package com.pruebas.repository;
 
 
 import com.pruebas.model.TipoAnimalModel;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface TipoAnimalRepo extends JpaRepository<TipoAnimalModel, Integer> {
+public interface TipoAnimalRepository extends JpaRepository<TipoAnimalModel, Integer> {
 
 }
