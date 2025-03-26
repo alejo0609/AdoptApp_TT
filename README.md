@@ -14,6 +14,25 @@ INSERT INTO TIPODOCUMENTOS (nombre_tipo_documento) VALUES ("Cédula de Ciudadan�
 
 devenv /version
 
-
 reg query "HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VS7"
 
+<br>
+
+<br>
+
+<br>
+
+// encriptador de claves//
+<br>
+package adoptApp.adoptApp.utils;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+public class BCryptTest {
+    public static void main(String[] args) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String rawPassword = "password1"; // 👈 Cambia esto por la contraseña original
+        String encodedPassword = encoder.encode(rawPassword);
+        System.out.println("Contraseña encriptada: " + encodedPassword);
+    }
+}
