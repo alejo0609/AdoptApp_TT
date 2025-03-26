@@ -16,7 +16,11 @@ public class AnimalController {
 
     @Autowired
     private AnimalService animalService;
-
+    
+    @GetMapping("/ultimos")
+        public List<AnimalModel> obtenerUltimos10Animales() {
+        return animalService.obtenerUltimos10Animales();
+    }
  
     // ✅ Obtener todos los animales
     @GetMapping
@@ -31,10 +35,18 @@ public class AnimalController {
         return animalService.findById(id);
     }
 
+    public List<AnimalModel> getLastTenAnimals() {
+        return animalService.findLastTen();
+    }
+
     // ✅ Crear un nuevo animal
     @PostMapping
     public AnimalModel createAnimal(@RequestBody AnimalModel animal) {
         return animalService.save(animal);
+    }
+    @PostMapping("/bulk")
+        public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
+        return animalService.saveAll(animals);
     }
 
     // ✅ Actualizar un animal existente

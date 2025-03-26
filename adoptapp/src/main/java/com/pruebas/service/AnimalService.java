@@ -15,28 +15,43 @@ import java.util.Optional;
 public class AnimalService {
 
     @Autowired
-    private AnimalRepository animalRepo;
+    private AnimalRepository animalRepository;
 
     // ✅ Obtener todos los animales
+    public List<AnimalModel> obtenerUltimos10Animales() {
+        return animalRepository.findTop10ByOrderByIdAnimalDesc(); 
+    }
+
+    public List<AnimalModel> findLastTen() {
+        return animalRepository.findTop10ByOrderByIdAnimalDesc();
+    } 
+
+
+
     public List<AnimalModel> findAll() {
-        return animalRepo.findAll();
+        return animalRepository.findAll();
     }
 
     // ✅ Obtener un animal por ID
     public Optional<AnimalModel> findById(Integer id) {
-        return animalRepo.findById(id);
+        return animalRepository.findById(id);
     }
 
     // ✅ Crear o actualizar un animal
     public AnimalModel save(AnimalModel animal) {
-        return animalRepo.save(animal);
+        return animalRepository.save(animal);
+    }
+
+    public List<AnimalModel> saveAll(List<AnimalModel> animals) {
+        return animalRepository.saveAll(animals);
     }
 
 
 
     // ✅ Eliminar un animal por ID
     public void deleteById(Integer id) {
-        animalRepo.deleteById(id);
+        animalRepository.deleteById(id);
     }
+
 }
 
