@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/datos_personales")
 public class DatosPersonalesController {
@@ -35,4 +36,8 @@ public class DatosPersonalesController {
         return datosPersonalesService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
     }
 }
+
+
+
+
 

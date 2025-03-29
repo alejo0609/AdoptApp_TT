@@ -21,7 +21,7 @@ public void setIdUsuario(Integer id) {
 private String email;
 
 @Column(nullable = false, length = 155)
-private String pass_usuario;
+private String password;
 
 @Column(nullable = false)
 private Boolean estado_usuario;
