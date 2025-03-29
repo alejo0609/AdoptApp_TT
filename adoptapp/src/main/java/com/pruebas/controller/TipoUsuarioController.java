@@ -9,29 +9,29 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tipo_Usuarios")
+@RequestMapping("/tipo_usuarios")
 public class TipoUsuarioController {
 
     @Autowired
-    private TipoUsuarioService tipoUsuarioService;
+    private TipoUsuarioService tipo_usuarioService;
 
     @GetMapping
     public List<TipoUsuarioModel> obtenerTodos() {
-        return tipoUsuarioService.obtenerTodos();
+        return tipo_usuarioService.obtenerTodos();
     }
 
     @GetMapping("/{id}")
     public Optional<TipoUsuarioModel> obtenerPorId(@PathVariable int id) {
-        return tipoUsuarioService.obtenerPorId(id);
+        return tipo_usuarioService.obtenerPorId(id);
     }
 
     @PostMapping
-    public TipoUsuarioModel guardar(@RequestBody TipoUsuarioModel tipoUsuario) {
-        return tipoUsuarioService.guardar(tipoUsuario);
+    public TipoUsuarioModel guardar(@RequestBody TipoUsuarioModel tipo_usuario) {
+        return tipo_usuarioService.guardar(tipo_usuario);
     }
 
     @DeleteMapping("/{id}")
     public String eliminar(@PathVariable int id) {
-        return tipoUsuarioService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
+        return tipo_usuarioService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
     }
 }

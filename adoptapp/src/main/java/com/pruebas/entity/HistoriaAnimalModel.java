@@ -11,7 +11,7 @@ public class HistoriaAnimalModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idhistoriaanimal;
+    private int idHistoriAanimal;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String estado_salud; 

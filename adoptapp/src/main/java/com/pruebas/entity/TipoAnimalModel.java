@@ -12,7 +12,7 @@ public class TipoAnimalModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
-    private int idtipoanimal;
+    private int idTipoAnimal;
 
     @Column(nullable = false, length = 155)
     private String nombre_tipo_animal;

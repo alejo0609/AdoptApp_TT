@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "tipoUsuario")
+@Table(name = "tipo_usuario")
 @Data
 public class TipoUsuarioModel {
 
@@ -21,7 +21,7 @@ public void setIdTipoUsuario(Integer id) {
 private String nombre_tipo_usuario;
 
 @Column(nullable = false)
-private Boolean estado_tipoUsuario;
+private Boolean estado_tipo_usuario;
 
 
 }

@@ -18,7 +18,7 @@ public void setIdDatosPersonales(Integer id) {
 }
 
 @Column(nullable = false, length = 255)
-private String nombre_completo;
+private String name;
 
 @Column(nullable = false, length = 55, unique = true)
 private String dni;
@@ -26,20 +26,25 @@ private String dni;
 @Column(nullable = false, length = 255)
 private String direccion;
 
-@Column(nullable = false, length = 15)
-private String telefono;
-
 @Column(nullable = false, length = 55)
 private String ciudad;
 
+@Column(nullable = false, length = 15)
+private String telefono;
+
+
 @Column(nullable = false, length = 155, unique = true)
 private String email;
-}
 
-/*
+
 @Column(nullable = false, length = 155)
 private String password;
 
+@Column(nullable = false, length = 155)
+private String confirm_password;
+
+}
+/* 
 @Column(nullable = false)
 private Boolean estado_datosPersonales;
 */

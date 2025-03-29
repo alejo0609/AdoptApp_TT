@@ -4,9 +4,6 @@ import com.pruebas.model.AnimalModel;
 import com.pruebas.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -17,17 +14,16 @@ public class AnimalService {
     @Autowired
     private AnimalRepository animalRepository;
 
-    // ✅ Obtener todos los animales
+    // ✅ Obtiene los últimos 10 animales registrados para adopción
     public List<AnimalModel> obtenerUltimos10Animales() {
         return animalRepository.findTop10ByOrderByIdAnimalDesc(); 
     }
-
+    // ✅ Obtiene los últimos 10 animales registrados para adopción
     public List<AnimalModel> findLastTen() {
         return animalRepository.findTop10ByOrderByIdAnimalDesc();
     } 
-
-
-
+    
+    // ✅  Obtiene todos los animales
     public List<AnimalModel> findAll() {
         return animalRepository.findAll();
     }

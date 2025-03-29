@@ -38,7 +38,7 @@ public class AdopcionController {
     // ✅ Actualizar un adopcion existente
     @PutMapping("/{id}")
     public AdopcionModel updateAdopcion(@PathVariable Integer id, @RequestBody AdopcionModel adopcion) {
-        adopcion.setIdadopcion(id);
+        adopcion.setIdAdopcion(id);
         return adopcionService.save(adopcion);
     }
 

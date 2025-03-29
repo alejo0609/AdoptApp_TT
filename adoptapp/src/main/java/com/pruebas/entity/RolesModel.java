@@ -11,7 +11,7 @@ public class RolesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idroles;
+    private int idRoles;
 
     @Column(nullable = false)
     private LocalDateTime creado; 

@@ -11,12 +11,13 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/animales")
+@RequestMapping("/adopta")
 public class AnimalController {
 
     @Autowired
     private AnimalService animalService;
     
+    // ✅ Obtener los últimos 10 animales registrados en el sistema
     @GetMapping("/ultimos")
         public List<AnimalModel> obtenerUltimos10Animales() {
         return animalService.obtenerUltimos10Animales();
@@ -28,7 +29,6 @@ public class AnimalController {
         return animalService.findAll();
     }
   
-
     // ✅ Obtener un animal por ID
     @GetMapping("/{id}")
     public Optional<AnimalModel> getAnimalById(@PathVariable Integer id) {

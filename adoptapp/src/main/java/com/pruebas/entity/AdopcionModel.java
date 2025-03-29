@@ -11,7 +11,7 @@ public class AdopcionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idadopcion;
+    private Integer idAdopcion;
 
     @Column(nullable = false)
     private LocalDateTime fecha; 

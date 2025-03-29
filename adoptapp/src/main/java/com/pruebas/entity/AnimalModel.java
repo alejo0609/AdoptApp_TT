@@ -19,8 +19,6 @@ public class AnimalModel {
     @Column(nullable = false, length = 155)
     private String nombre_animal;
 
-
-
     @Column(nullable = false, length = 45)
     private String raza;
 

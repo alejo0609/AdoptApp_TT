@@ -11,7 +11,7 @@ public class TipoVacunaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idvacunas;
+    private int idVacuna;
 
     @Column(nullable = false, length = 155)
     private String nombre_tipo_vacuna;

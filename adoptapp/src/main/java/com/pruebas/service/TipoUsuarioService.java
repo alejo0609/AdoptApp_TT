@@ -12,23 +12,23 @@ import java.util.Optional;
 public class TipoUsuarioService {
 
     @Autowired
-    private TipoUsuarioRepository tipoUsuarioRepository;
+    private TipoUsuarioRepository tipo_usuarioRepository;
 
     public List<TipoUsuarioModel> obtenerTodos() {
-        return tipoUsuarioRepository.findAll();
+        return tipo_usuarioRepository.findAll();
     }
 
     public Optional<TipoUsuarioModel> obtenerPorId(int id) {
-        return tipoUsuarioRepository.findById(id);
+        return tipo_usuarioRepository.findById(id);
     }
 
-    public TipoUsuarioModel guardar(TipoUsuarioModel tipoUsuario) {
-        return tipoUsuarioRepository.save(tipoUsuario);
+    public TipoUsuarioModel guardar(TipoUsuarioModel tipo_usuario) {
+        return tipo_usuarioRepository.save(tipo_usuario);
     }
 
     public boolean eliminar(int id) {
-        if (tipoUsuarioRepository.existsById(id)) {
-            tipoUsuarioRepository.deleteById(id);
+        if (tipo_usuarioRepository.existsById(id)) {
+            tipo_usuarioRepository.deleteById(id);
             return true;
         }
         return false;
