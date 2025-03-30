@@ -8,6 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controlador para gestionar los animales disponibles para adopción.
+ * Proporciona endpoints para realizar operaciones CRUD sobre los animales.
+ * 
+ * @author Alejandro Perez CC 8.029.742
+ * @author Julian David Giraldo Murillo CC 1.007.240.094
+ * @author Andres Escobar Vasquez CC 1.038.096.962
+ * @author Jorge Andres Restrepo Cataño CC 98.648.720
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/adopta")
@@ -15,46 +24,62 @@ public class AnimalController {
 
     @Autowired
     private AnimalService animalService;
-    
-    // ✅ Obtener los últimos 10 animales disponibles
+
+    /**
+     * Obtiene los últimos 10 animales disponibles.
+     * 
+     * @return Lista con los últimos 10 animales registrados en el sistema.
+     */
     @GetMapping("/ultimos")
     public List<AnimalModel> obtenerUltimos10Animales() {
         return animalService.obtenerUltimos10Animales();
     }
- 
-    // ✅ Obtener todos los animales
+
+    /**
+     * Obtiene todos los animales registrados en la base de datos.
+     * 
+     * @return Lista de todos los animales disponibles.
+     */
     @GetMapping
     public List<AnimalModel> getAllAnimals() {
         return animalService.findAll();
     }
-  
-    // ✅ Obtener un animal por ID
+
+    /**
+     * Obtiene un animal específico por su ID.
+     * 
+     * @param id Identificador del animal.
+     * @return El animal encontrado o un Optional vacío si no existe.
+     */
     @GetMapping("/{id}")
     public Optional<AnimalModel> getAnimalById(@PathVariable Integer id) {
         return animalService.findById(id);
     }
 
-    // ✅ Crear un nuevo animal
+    /**
+     * Registra un nuevo animal en la base de datos.
+     * 
+     * @param animal Datos del animal a registrar.
+     * @return El animal creado.
+     */
     @PostMapping
     public AnimalModel createAnimal(@RequestBody AnimalModel animal) {
         return animalService.save(animal);
     }
-    
+
+    /**
+     * Registra múltiples animales en una sola operación.
+     * 
+     * @param animals Lista de animales a registrar.
+     * @return Lista de animales creados.
+     */
     @PostMapping("/bulk")
     public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
         return animalService.saveAll(animals);
     }
 
-    // ✅ Actualizar un animal existente
-    @PutMapping("/{id}")
-    public AnimalModel updateAnimal(@PathVariable Integer id, @RequestBody AnimalModel animal) {
-        animal.setIdAnimal(id);
-        return animalService.save(animal);
-    }
-
-    // ✅ Eliminar un animal
-    @DeleteMapping("/{id}")
-    public void deleteAnimal(@PathVariable Integer id) {
-        animalService.deleteById(id);
-    }
-}
+    /**
+     * Actualiza la información de un animal existente.
+     * 
+     * @param id Identificador del animal a actualizar.
+     * @param animal Datos actualizados del animal.
