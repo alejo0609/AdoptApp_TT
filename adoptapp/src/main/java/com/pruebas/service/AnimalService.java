@@ -7,23 +7,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class AnimalService {
 
     @Autowired
     private AnimalRepository animalRepository;
 
-    // ✅ Obtiene los últimos 10 animales registrados para adopción
+    // ✅ Obtiene los últimos 10 animales disponibles para adopción
     public List<AnimalModel> obtenerUltimos10Animales() {
-        return animalRepository.findTop10ByOrderByIdAnimalDesc(); 
+        return animalRepository.findTop10ByEstadoAnimalTrueOrderByIdAnimalDesc();
     }
-    // ✅ Obtiene los últimos 10 animales registrados para adopción
-    public List<AnimalModel> findLastTen() {
-        return animalRepository.findTop10ByOrderByIdAnimalDesc();
-    } 
     
-    // ✅  Obtiene todos los animales
+    // ✅ Obtiene todos los animales
     public List<AnimalModel> findAll() {
         return animalRepository.findAll();
     }
@@ -42,12 +37,8 @@ public class AnimalService {
         return animalRepository.saveAll(animals);
     }
 
-
-
     // ✅ Eliminar un animal por ID
     public void deleteById(Integer id) {
         animalRepository.deleteById(id);
     }
-
 }
-

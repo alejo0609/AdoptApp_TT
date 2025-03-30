@@ -61,8 +61,8 @@ function Main() {
                 <h3 className="text-xl font-semibold text-gray-800">{animal.nombre_animal}</h3>
                 <p className="text-gray-600">Edad: {animal.edad} años</p>
                 <p className="text-gray-600">Raza: {animal.raza}</p>
-                <p className={`text-sm font-bold mt-2 ${animal.estado_animal ? "text-green-500" : "text-red-500"}`}>
-                  {animal.estado_animal ? "Disponible" : "No disponible"}
+                <p className={`text-sm font-bold mt-2 ${animal.estadoAnimal ? "text-green-500" : "text-red-500"}`}>
+                  {animal.estadoAnimal ? "Disponible" : "No disponible"}
                 </p>
                 <button className="mt-3 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
                   Adoptar

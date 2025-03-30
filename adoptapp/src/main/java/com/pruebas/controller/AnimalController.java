@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/adopta")
@@ -15,9 +16,9 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
     
-    // ✅ Obtener los últimos 10 animales registrados en el sistema
+    // ✅ Obtener los últimos 10 animales disponibles
     @GetMapping("/ultimos")
-        public List<AnimalModel> obtenerUltimos10Animales() {
+    public List<AnimalModel> obtenerUltimos10Animales() {
         return animalService.obtenerUltimos10Animales();
     }
  
@@ -33,17 +34,14 @@ public class AnimalController {
         return animalService.findById(id);
     }
 
-    public List<AnimalModel> getLastTenAnimals() {
-        return animalService.findLastTen();
-    }
-
     // ✅ Crear un nuevo animal
     @PostMapping
     public AnimalModel createAnimal(@RequestBody AnimalModel animal) {
         return animalService.save(animal);
     }
+    
     @PostMapping("/bulk")
-        public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
+    public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
         return animalService.saveAll(animals);
     }
 

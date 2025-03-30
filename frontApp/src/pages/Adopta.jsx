@@ -30,7 +30,7 @@ const Animales = () => {
               <h2 className="text-lg font-semibold mt-2">{animal.nombre_animal}</h2>
               <p><strong>Raza:</strong> {animal.raza}</p>
               <p><strong>Edad:</strong> {animal.edad} años</p>
-              <p><strong>Estado:</strong> {animal.estado_animal ? "Disponible" : "No disponible"}</p>
+              <p><strong>Estado:</strong> {animal.estadoAnimal ? "Disponible" : "No disponible"}</p>
             </div>
           ))}
         </div>

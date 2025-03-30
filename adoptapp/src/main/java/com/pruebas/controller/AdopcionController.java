@@ -47,4 +47,6 @@ public class AdopcionController {
     public void deleteAdopcion(@PathVariable Integer id) {
         adopcionService.deleteById(id);
     }
+
+    
 }

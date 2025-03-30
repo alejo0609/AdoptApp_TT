@@ -29,7 +29,7 @@ public class AnimalModel {
     private Boolean esterilizado;
 
     @Column(nullable = false)
-    private Boolean estado_animal;
+    private Boolean estadoAnimal;   
 
     @Column(nullable = false, length = 255)
     private String imagen_animal;
