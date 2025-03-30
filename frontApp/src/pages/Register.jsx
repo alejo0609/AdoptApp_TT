@@ -1,29 +1,35 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { FaGoogle, FaFacebook, FaPaw } from "react-icons/fa";
 
 function Register() {
-  // Estado del formulario
+  // Estado del formulario: los nombres deben coincidir con los de la entidad del backend
   const [formData, setFormData] = useState({
     name: "",
+    dni: "",
+    direccion: "",
+    ciudad: "",
+    telefono: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirm_password: ""
   });
 
+  
+
   const [errors, setErrors] = useState("");
+  const [message, setMessage] = useState("");
 
   // Manejar cambios en los inputs
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    setFormData({ 
+      ...formData, 
+      [e.target.name]: e.target.value 
     });
   };
 
   // Validar correo electrónico
-  const isValidEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   // Manejar el envío del formulario
   const handleSubmit = (e) => {
@@ -34,17 +40,28 @@ function Register() {
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData.confirm_password) {
       setErrors("Las contraseñas no coinciden.");
       return;
     }
 
-    console.log("Datos del usuario:", formData);
-    alert("¡Registro exitoso!");
-    setErrors(""); // Limpiar errores
+    // Limpia errores previos
+    setErrors("");
+
+    // Enviar datos al backend
+    axios.post("http://localhost:8080/datos_personales", formData)
+      .then(response => {
+        console.log("Usuario registrado:", response.data);
+        setMessage("¡Registro exitoso!");
+        
+      })
+      .catch(error => {
+        console.error("Error en el registro:", error);
+        setMessage("Error en el registro. Por favor, inténtalo nuevamente.");
+      });
   };
 
-  // Métodos de autenticación social (Se implementan con Firebase o SDKs)
+  // Métodos para autenticación social (ejemplo)
   const handleGoogleSignIn = () => {
     alert("Iniciar sesión con Google (Implementar con Firebase)");
   };
@@ -62,8 +79,9 @@ function Register() {
           <h2 className="text-2xl font-bold text-green-700">Únete a la familia animalista</h2>
         </div>
 
-        {/* Mensaje de error */}
+        {/* Mensaje de error o éxito */}
         {errors && <p className="text-red-500 text-sm mb-4">{errors}</p>}
+        {message && <p className="text-green-500 text-sm mb-4">{message}</p>}
 
         {/* Formulario de Registro */}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,56 +93,56 @@ function Register() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Tu nombre"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Cedula</label>
+            <label className="block text-gray-700 font-semibold">Cédula (DNI)</label>
             <input
               type="number"
-              name="name"
-              value={formData.name}
+              name="dni"
+              value={formData.dni}
               onChange={handleChange}
               required
+              placeholder="Tu cédula"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-              placeholder="Tu cedula"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Direccion</label>
+            <label className="block text-gray-700 font-semibold">Dirección</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="direccion"
+              value={formData.direccion}
               onChange={handleChange}
               required
+              placeholder="Tu dirección"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-              placeholder="Tu direccion"
             />
           </div>
           <div>
             <label className="block text-gray-700 font-semibold">Ciudad</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="ciudad"
+              value={formData.ciudad}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Tu ciudad"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold">Telefono</label>
+            <label className="block text-gray-700 font-semibold">Teléfono</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="telefono"
+              value={formData.telefono}
               onChange={handleChange}
               required
+              placeholder="Tu teléfono"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-              placeholder="Tu telefono"
             />
           </div>
           <div>
@@ -135,11 +153,10 @@ function Register() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="tucorreo@example.com"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
-
           <div>
             <label className="block text-gray-700 font-semibold">Contraseña</label>
             <input
@@ -148,21 +165,20 @@ function Register() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="******"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
-
           <div>
             <label className="block text-gray-700 font-semibold">Confirmar Contraseña</label>
             <input
               type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              name="confirm_password"
+              value={formData.confirm_password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="******"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
@@ -186,7 +202,6 @@ function Register() {
           >
             <FaGoogle />
           </button>
-
           <button
             onClick={handleFacebookSignIn}
             className="text-blue-600 text-3xl hover:text-blue-700 transition"

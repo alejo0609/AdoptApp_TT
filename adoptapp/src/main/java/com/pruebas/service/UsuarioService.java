@@ -23,6 +23,12 @@ public class UsuarioService {
     public Optional<UsuarioModel> obtenerPorId(int id) {
         return usuarioRepository.findById(id);
     }
+    public Optional<UsuarioModel> autenticarUsuario(String email, String password) {
+        return usuarioRepository.findByEmailAndPassword(email, password);
+    }
+    public Optional<UsuarioModel> obtenerPorEmailYPassword(String email, String password) {
+    return usuarioRepository.findByEmailAndPassword(email, password);
+}
 
     public UsuarioModel guardar(UsuarioModel usuario) {
         return usuarioRepository.save(usuario);

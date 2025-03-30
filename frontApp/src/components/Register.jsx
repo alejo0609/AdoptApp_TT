@@ -1,8 +1,9 @@
+/*
 import React, { useState } from "react";
 import { FaGoogle, FaFacebook, FaPaw } from "react-icons/fa";
 
 function Register() {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const [formData, setFormData] = useState({ name: "",dni: "",direccion: "",ciudad: "", telefono: "", email: "", password: "", confirm_password: "" });
   const [errors, setErrors] = useState("");
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,7 +16,7 @@ function Register() {
       setErrors("Por favor, introduce un correo válido.");
       return;
     }
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData.confirm_password) {
       setErrors("Las contraseñas no coinciden.");
       return;
     }
@@ -40,7 +41,7 @@ function Register() {
             className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-green-400" />
           <input type="password" name="password" value={formData.password} onChange={handleChange} required placeholder="Contraseña"
             className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-green-400" />
-          <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required placeholder="Confirmar Contraseña"
+          <input type="password" name="confirm_password" value={formData.confirm_password} onChange={handleChange} required placeholder="Confirmar Contraseña"
             className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-green-400" />
           <button type="submit" className="w-full bg-green-600 text-white py-2 rounded-md font-bold hover:bg-green-700 transition">
             Registrarse
@@ -59,3 +60,4 @@ function Register() {
 }
 
 export default Register;
+*/

@@ -5,7 +5,7 @@ const Animales = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/animales") 
+    axios.get("http://localhost:8080/adopta") 
       .then(response => {
         console.log("Datos recibidos:", response.data); // Verifica en consola
         setData(response.data);
