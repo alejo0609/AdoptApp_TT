@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Tiendas from "./pages/Tiendas";
 import SeleccionRegistro from "./pages/SeleccionRegistro";
 import RegistroGenerico from "./pages/RegistroGenerico";
+import Clientes from "./pages/Clientes";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<SeleccionRegistro />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/clientes" element={<Clientes />} />
         <Route path="/tiendas" element={<Tiendas />} />
         <Route path="/registrar" element={<SeleccionRegistro />} />
         <Route path="/registro/usuario" element={<Register />} />
