@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register"; 
 import Login from './pages/Login'
 import Tiendas from "./pages/Tiendas";
+import Clientes from "./pages/Clientes";
 import RegistrarTienda from "./pages/RegistrarTienda";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/clientes" element={<Clientes />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} /> {/* ✅ Nueva ruta para inicio de sesión */}
         <Route path="/tiendas" element={<Tiendas />} />
