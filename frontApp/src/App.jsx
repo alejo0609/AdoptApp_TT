@@ -8,7 +8,8 @@ import Login from './pages/Login';
 import Tiendas from "./pages/Tiendas";
 import SeleccionRegistro from "./pages/SeleccionRegistro";
 import RegistroGenerico from "./pages/RegistroGenerico";
-import Clientes from "./pages/Clientes";
+import QuienesSomos from "./pages/QuienesSomos";
+import Contactanos from "./pages/Contactanos";
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<SeleccionRegistro />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/clientes" element={<Clientes />} />
         <Route path="/tiendas" element={<Tiendas />} />
         <Route path="/registrar" element={<SeleccionRegistro />} />
         <Route path="/registro/usuario" element={<Register />} />
-        <Route path="/registro/:tipo" element={<RegistroGenerico />} />
+        <Route path="/registro/:tipo" element={<RegistroGenerico />} /> 
+        <Route path="/quienes-somos" element={<QuienesSomos />} />
+        <Route path="/contactanos" element={<Contactanos />} />
       </Routes>
       <Footer />
     </Router>

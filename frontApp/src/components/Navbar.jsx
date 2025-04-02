@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../assets/LogoAdoptapp.png"; // Ajusta la ruta si tu logo está en otro lugar
 import cogs_result from "../assets/cogs_result.svg";
 
 function Navbar() {
@@ -7,18 +8,18 @@ function Navbar() {
     <nav className="bg-blue-600 text-white p-4 flex items-center justify-between">
       {/* Logo a la izquierda */}
       <div>
-        <img className="w-16 h-16 rounded-full" src={cogs_result} alt="logo-adopta" />
+        <img className="w-16 h-16 rounded-full" src={Logo} alt="logo-adopta" />
       </div>
 
       {/* Menú centrado */}
       <ul className="flex space-x-6">
         <li><Link to="/" className="hover:text-gray-200 font-bold">Inicio</Link></li>
-        <li><Link to="/register" className="hover:text-gray-200 font-bold">Quienes Somos</Link></li>
+        <li><Link to="/quienes-somos" className="hover:text-gray-200 font-bold">Quienes Somos</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Adopta</Link></li>
-        <li><Link to="/clientes" className="hover:text-gray-200 font-bold">Clientes</Link></li>
+        <li><Link to="/register" className="hover:text-gray-200 font-bold">Cuidador</Link></li>
         <li><Link to="/tiendas" className="hover:text-gray-200 font-bold">Tiendas</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li>
-        <li><Link to="/register" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
+        <li><Link to="/contactanos" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
       </ul>
 
       {/* Botones a la derecha */}
