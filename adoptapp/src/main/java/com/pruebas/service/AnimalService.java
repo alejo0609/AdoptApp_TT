@@ -1,4 +1,4 @@
-package com.pruebas.service.animales;
+package com.pruebas.service;
 
 import com.pruebas.model.AnimalModel;
 import com.pruebas.repository.AnimalRepository;
@@ -23,6 +23,10 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
+        public List<AnimalModel> saveAll(List<AnimalModel> animals) {
+        return animalRepository.saveAll(animals);
+    }
+
     // ✅ Obtener un animal por ID
     public Optional<AnimalModel> findById(Integer id) {
         return animalRepository.findById(id);
@@ -33,9 +37,7 @@ public class AnimalService {
         return animalRepository.save(animal);
     }
 
-    public List<AnimalModel> saveAll(List<AnimalModel> animals) {
-        return animalRepository.saveAll(animals);
-    }
+
 
     // ✅ Eliminar un animal por ID
     public void deleteById(Integer id) {

@@ -1,5 +1,5 @@
 package com.pruebas.model;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,13 +11,15 @@ public class AnimalModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAnimal;
+    private Integer idAnimal;
+
     public void setIdAnimal(Integer id) {
         this.idAnimal = id;
     }
 
     @Column(nullable = false, length = 155)
-    private String nombre_animal;
+    @JsonProperty("nombre_animal")
+    private String nombreAnimal;
 
     @Column(nullable = false, length = 45)
     private String raza;
@@ -28,9 +30,11 @@ public class AnimalModel {
     @Column(nullable = false)
     private Boolean esterilizado;
 
-    @Column(nullable = false)
-    private Boolean estadoAnimal;   
+   
+    @Column(name = "estado_animal", nullable = false)
+    private Boolean estadoAnimal;
 
     @Column(nullable = false, length = 255)
-    private String imagen_animal;
+    @JsonProperty("imagen_animal")
+    private String imagenAnimal;
 }

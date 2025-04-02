@@ -36,8 +36,3 @@ public class DatosPersonalesController {
         return datosPersonalesService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
     }
 }
-
-
-
-
-

@@ -11,7 +11,7 @@ function Main() {
   const [animals, setAnimals] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/adopta/ultimos") // Obtiene los últimos 10 animales
+    axios.get("http://localhost:8080/animal/ultimos") // Obtiene los últimos 10 animales
       .then(response => {
         console.log("Datos recibidos:", response.data); // Depuración
         setAnimals(response.data);
