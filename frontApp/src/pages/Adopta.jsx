@@ -5,7 +5,7 @@ const Animales = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/animal/disponibles") 
+    axios.get("http://localhost:8080/adopta") 
       .then(response => {
         console.log("Datos recibidos:", response.data); // Verifica en consola
         setData(response.data);
@@ -30,7 +30,7 @@ const Animales = () => {
               <h2 className="text-lg font-semibold mt-2">{animal.nombre_animal}</h2>
               <p><strong>Raza:</strong> {animal.raza}</p>
               <p><strong>Edad:</strong> {animal.edad} años</p>
-              <p><strong>Estado:</strong> {animal.estadoAnimal ? "Disponible para adopción" : "Adoptado"}</p>
+              <p><strong>Estado:</strong> {animal.estadoAnimal ? "Disponible" : "No disponible"}</p>
             </div>
           ))}
         </div>
