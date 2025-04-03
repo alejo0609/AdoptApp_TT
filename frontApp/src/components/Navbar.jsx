@@ -1,0 +1,42 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../assets/LogoAdoptapp.png"; // Ajusta la ruta si tu logo está en otro lugar
+import cogs_result from "../assets/cogs_result.svg";
+
+function Navbar() {
+  return (
+    <nav className="bg-blue-600 text-white p-4 flex items-center justify-between">
+      {/* Logo a la izquierda */}
+      <div>
+        <img className="w-16 h-16 rounded-full" src={Logo} alt="logo-adopta" />
+      </div>
+
+      {/* Menú centrado */}
+      <ul className="flex space-x-6">
+        <li><Link to="/" className="hover:text-gray-200 font-bold">Inicio</Link></li>
+        <li><Link to="/quienes-somos" className="hover:text-gray-200 font-bold">Quienes Somos</Link></li>
+        <li><Link to="/register" className="hover:text-gray-200 font-bold">Adopta</Link></li>
+        <li><Link to="/register" className="hover:text-gray-200 font-bold">Cuidador</Link></li>
+        <li><Link to="/tiendas" className="hover:text-gray-200 font-bold">Tiendas</Link></li>
+        <li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li>
+        <li><Link to="/contactanos" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
+      </ul>
+
+      {/* Botones a la derecha */}
+      <div className="flex space-x-4">
+        <Link to="/login"> {/* ✅ Redirige a la página de inicio de sesión */}
+          <button className="bg-white text-blue-600 px-4 py-2 rounded-md font-bold hover:bg-gray-200">
+            Iniciar Sesión
+          </button>
+        </Link>
+        <Link to="/register">
+          <button className="bg-yellow-500 text-white px-4 py-2 rounded-md font-bold hover:bg-yellow-600">
+            Registrarse
+          </button>
+        </Link>
+      </div>
+    </nav>
+  );
+}
+
+export default Navbar;

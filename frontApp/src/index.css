@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Puedes agregarlo en index.css o en tu App.jsx */
+@import "leaflet/dist/leaflet.css";
