@@ -44,8 +44,4 @@ private String password;
 private String confirm_password;
 
 }
-/* 
-@Column(nullable = false)
-private Boolean estado_datosPersonales;
-*/
 

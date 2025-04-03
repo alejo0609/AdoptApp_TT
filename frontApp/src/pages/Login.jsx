@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const response = await fetch("http://localhost:8080/usuarios/autenticar", { // Cambiar a /autenticar
+    const response = await fetch("http://localhost:8080/usuario/autenticar", { // Cambiar a /autenticar
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

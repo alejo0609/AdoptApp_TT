@@ -77,9 +77,4 @@ public class AnimalController {
     public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
         return animalService.saveAll(animals);
     }
-
-    /**
-     * Actualiza la información de un animal existente.
-     * 
-     * @param id Identificador del animal a actualizar.
-     * @param animal Datos actualizados del animal.
+}
