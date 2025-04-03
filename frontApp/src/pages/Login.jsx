@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaLock, FaEnvelope, FaSignInAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,20 +14,23 @@ function Login() {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:8080/usuarios/login", {
-        email,
-        password,
+      const response = await fetch("http://localhost:8080/datos_personales/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
-      
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        navigate("/register"); // Redirige al dashboard o página principal
+
+      const data = await response.json(); // ✅ Convertir la respuesta a JSON correctamente
+
+      if (response.ok && data.mensaje === "Inicio de sesión exitoso") {
+        alert("¡Inicio de sesión exitoso!");
+        navigate("/adopta"); // ✅ Redirigir a la página correcta
       } else {
-        setError("Error en la autenticación. Inténtalo de nuevo.");
+        setError("Credenciales incorrectas. Inténtalo de nuevo.");
       }
     } catch (err) {
       console.error("Error en el login:", err);
-      setError(err.response?.data?.message || "Correo o contraseña incorrectos.");
+      setError("Error en el servidor. Inténtalo más tarde.");
     }
   };
 
@@ -77,6 +80,14 @@ function Login() {
           >
             Ingresar
           </button>
+
+          <div>
+            <Link to="/register">
+            <button className="bg-yellow-500 text-white px-4 py-2 rounded-md font-bold hover:bg-yellow-600">
+              Registrarse
+            </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>
