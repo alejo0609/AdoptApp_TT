@@ -7,8 +7,20 @@ import java.util.List;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<AnimalModel, Integer> {
+    // Buscar los ultimos 10 animales disponibles
     List<AnimalModel> findTop10ByEstadoAnimalTrueOrderByIdAnimalDesc();
+    // Buscar animales disponibles
+    List<AnimalModel> findByEstadoAnimalTrueOrderByIdAnimalDesc();
+    // Buscar animales no disponibles
+    List<AnimalModel> findByEstadoAnimalFalseOrderByIdAnimalDesc();
+    // Buscar por nombre
+    List<AnimalModel> findByNombreAnimal(String nombreAnimal);
+    // Buscar por raza
+    List<AnimalModel> findByRaza(String raza);
+    // Buscar animales esterilizados
+    List<AnimalModel> findByEsterilizadoTrue();
+    // Buscar animales por la edad
+    List<AnimalModel> findByEdad(String edad);
 }
-
 
 

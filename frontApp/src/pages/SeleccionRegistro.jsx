@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserPlus, FaStore, FaDog, FaUserNurse } from "react-icons/fa";
-import logo from "../assets/LogoAdoptapp.png";
+import logo from "/aset/LogoAdoptapp.png";
 
 function SeleccionRegistro() {
   const navigate = useNavigate();

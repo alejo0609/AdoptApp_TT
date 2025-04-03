@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { FaLock, FaEnvelope, FaSignInAlt } from "react-icons/fa";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setMessage("");
 
     try {
       const response = await axios.post("http://localhost:8080/usuarios/login", {
         email,
         password,
       });
-
-      console.log("Inicio de sesión exitoso:", response.data);
-      setMessage("¡Inicio de sesión exitoso!");
-      // Aquí puedes redirigir al usuario o guardar el token si es necesario
+      
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/register"); // Redirige al dashboard o página principal
+      } else {
+        setError("Error en la autenticación. Inténtalo de nuevo.");
+      }
     } catch (err) {
       console.error("Error en el login:", err);
-      setError("Correo o contraseña incorrectos. Intenta de nuevo.");
+      setError(err.response?.data?.message || "Correo o contraseña incorrectos.");
     }
   };
 
@@ -36,7 +39,6 @@ function Login() {
         </h2>
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        {message && <p className="text-green-600 text-sm mb-4">{message}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -45,7 +47,6 @@ function Login() {
               <FaEnvelope className="text-gray-400 mr-2" />
               <input
                 type="email"
-                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -61,7 +62,6 @@ function Login() {
               <FaLock className="text-gray-400 mr-2" />
               <input
                 type="password"
-                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

@@ -1,3 +1,5 @@
+//cambio
+
 package com.pruebas.controller;
 
 import com.pruebas.model.UsuarioModel;
@@ -8,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
-
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
@@ -25,21 +27,22 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Optional<UsuarioModel> obtenerPorId(@PathVariable int id) {
-        return usuarioService.obtenerPorId(id);
+    public ResponseEntity<?> obtenerPorId(@PathVariable int id) {
+        Optional<UsuarioModel> usuario = usuarioService.obtenerPorId(id);
+        return usuario.isPresent() 
+            ? ResponseEntity.ok(usuario) 
+            : ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"mensaje\": \"Usuario no encontrado\"}");
     }
 
     @PostMapping
-    public UsuarioModel guardar(@RequestBody UsuarioModel usuario) {
-        return usuarioService.guardar(usuario);
+    public ResponseEntity<?> guardar(@RequestBody UsuarioModel usuario) {
+        UsuarioModel nuevoUsuario = usuarioService.guardar(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
     }
+
     @PostMapping("/login")
-    public Optional<UsuarioModel> autenticar(@RequestBody UsuarioModel usuario) {
-        return usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getPassword());
-    }
-    @PostMapping("/autenticar")
     public ResponseEntity<?> login(@RequestBody UsuarioModel usuario) {
-        Optional<UsuarioModel> usuarioEncontrado = usuarioService.obtenerPorEmailYPassword(usuario.getEmail(), usuario.getPassword());
+        Optional<UsuarioModel> usuarioEncontrado = usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getPassword());
 
         if (usuarioEncontrado.isPresent()) {
             return ResponseEntity.ok("{\"mensaje\": \"Inicio de sesión exitoso\"}");
@@ -50,8 +53,16 @@ public class UsuarioController {
 
 
 
+
+
+
+
+
+
     @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable int id) {
-        return usuarioService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
+    public ResponseEntity<?> eliminar(@PathVariable int id) {
+        return usuarioService.eliminar(id) 
+            ? ResponseEntity.ok("{\"mensaje\": \"Eliminado correctamente\"}") 
+            : ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"mensaje\": \"No se encontró el ID\"}");
     }
 }

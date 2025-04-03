@@ -64,7 +64,7 @@ function Tiendas() {
 
       {/* Botón para Registrar Tienda */}
       <div className="text-center mb-6">
-        <Link to="/registrar-tienda">
+        <Link to="/Carrusel">
           <button className="bg-yellow-500 text-white px-6 py-2 rounded-md font-bold hover:bg-yellow-600 transition">
             🏪 Registrar Nueva Tienda
           </button>

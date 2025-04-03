@@ -18,10 +18,38 @@ public class AnimalService {
         return animalRepository.findTop10ByEstadoAnimalTrueOrderByIdAnimalDesc();
     }
     
+    // ✅ Obtiene los animales disponibles para adopción
+    public List<AnimalModel> obtenerAnimalesDisponibles() {
+        return animalRepository.findByEstadoAnimalTrueOrderByIdAnimalDesc();
+    }
+
+    // ✅ Obtiene los animales que NO están disponibles para adopción
+    public List<AnimalModel> obtenerAnimalesNoDisponibles() {
+        return animalRepository.findByEstadoAnimalFalseOrderByIdAnimalDesc();
+    }
+    
     // ✅ Obtiene todos los animales
     public List<AnimalModel> findAll() {
         return animalRepository.findAll();
     }
+
+    // ✅ Busqueda por nombre del animal
+    public List<AnimalModel> buscarPorNombre(String nombre) {
+        return animalRepository.findByNombreAnimal(nombre);
+    }
+    // ✅ Busqueda por raza del animal
+    public List<AnimalModel> buscarPorRaza(String raza) {
+        return animalRepository.findByRaza(raza);
+    }
+    // ✅ Busqueda por Eterilización del animal
+        public List<AnimalModel> buscarEsterilizados() {
+            return animalRepository.findByEsterilizadoTrue();
+        }
+    // ✅ Busqueda por el estado del animal
+    public List<AnimalModel> buscarPorEdad(String edad) {
+        return animalRepository.findByEdad(edad);
+    }
+
 
         public List<AnimalModel> saveAll(List<AnimalModel> animals) {
         return animalRepository.saveAll(animals);

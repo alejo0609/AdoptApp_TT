@@ -17,10 +17,23 @@ public class AnimalController {
 @Autowired
 private AnimalService animalService;
 
+//  ----------    BUSQUEDA DE ANIMALES    ----------
+
 // ✅ Obtener los últimos 10 animales registrados en el sistema
 @GetMapping("/ultimos")
 public List<AnimalModel> obtenerUltimos10Animales() {
 return animalService.obtenerUltimos10Animales();
+}
+// ✅ Obtener los animales que se encuentren disponibles registrados en el sistema
+@GetMapping("/disponibles")
+public List<AnimalModel> obtenerAnimalesDisponibles() {
+return animalService.obtenerAnimalesDisponibles();
+}
+
+// ✅ Obtener los animales que NO se encuentran disponibles registrados en el sistema
+@GetMapping("/no_disponibles")
+public List<AnimalModel> obtenerAnimalesNoDisponibles() {
+return animalService.obtenerAnimalesNoDisponibles();
 }
 
 // ✅ Obtener todos los animales
@@ -35,11 +48,35 @@ public Optional<AnimalModel> getAnimalById(@PathVariable Integer id) {
 return animalService.findById(id);
 }
 
+// Buscar por nombre
+@GetMapping("/buscar/nombre/{nombre}")
+public List<AnimalModel> buscarPorNombre(@PathVariable String nombre) {
+    return animalService.buscarPorNombre(nombre);
+}
+// Buscar por raza
+@GetMapping("/buscar/raza/{raza}")
+public List<AnimalModel> buscarPorRaza(@PathVariable String raza) {
+    return animalService.buscarPorRaza(raza);
+}
+// Buscar animales esterilizados
+@GetMapping("/buscar/esterilizados")
+public List<AnimalModel> buscarEsterilizados() {
+    return animalService.buscarEsterilizados();
+}
+@GetMapping("/buscar/edad/{edad}")
+public List<AnimalModel> buscarPorEdad(@PathVariable String edad) {
+    return animalService.buscarPorEdad(edad);
+}
+
+
+
 // ✅ Crear un nuevo animal
 @PostMapping
 public AnimalModel createAnimal(@RequestBody AnimalModel animal) {
 return animalService.save(animal);
 }
+
+// ✅ Crear una lista de animales
 @PostMapping("/bulk")
 public List<AnimalModel> createMultipleAnimals(@RequestBody List<AnimalModel> animals) {
 return animalService.saveAll(animals);
@@ -57,4 +94,5 @@ return animalService.save(animal);
 public void deleteAnimal(@PathVariable Integer id) {
 animalService.deleteById(id);
 }
+
 }
