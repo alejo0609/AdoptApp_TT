@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `animalitos` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `animalitos`;
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: animalitos
+-- Host: localhost    Database: animalitos
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,13 +21,13 @@ USE `animalitos`;
 
 DROP TABLE IF EXISTS `adopcion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `adopcion` (
-  `idadopcion` int(11) NOT NULL AUTO_INCREMENT,
+  `idadopcion` int NOT NULL AUTO_INCREMENT,
   `estado_adopcion` bit(1) NOT NULL,
   `fecha` datetime(6) NOT NULL,
   PRIMARY KEY (`idadopcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,9 +45,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `animal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `animal` (
-  `id_animal` int(11) NOT NULL AUTO_INCREMENT,
+  `id_animal` int NOT NULL AUTO_INCREMENT,
   `edad` varchar(4) NOT NULL,
   `estadoAnimal` tinyint(1) DEFAULT NULL,
   `esterilizado` bit(1) NOT NULL,
@@ -58,7 +56,7 @@ CREATE TABLE `animal` (
   `raza` varchar(45) NOT NULL,
   `estado_animal` bit(1) NOT NULL,
   PRIMARY KEY (`id_animal`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,9 +75,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `datos_personales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `datos_personales` (
-  `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT,
+  `id_datos_personales` int NOT NULL AUTO_INCREMENT,
   `ciudad` varchar(55) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `email` varchar(155) NOT NULL,
@@ -87,11 +85,12 @@ CREATE TABLE `datos_personales` (
   `confirm_password` varchar(155) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(155) NOT NULL,
-  `dni` varchar(55) NOT NULL,
+  `dni` bigint NOT NULL,
   PRIMARY KEY (`id_datos_personales`),
   UNIQUE KEY `UKlbmttbb0j82ogk5xm579ikitt` (`email`),
-  UNIQUE KEY `UKdpry7ftc29rs0ov9tn6x8cqdj` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `UKdpry7ftc29rs0ov9tn6x8cqdj` (`dni`),
+  UNIQUE KEY `unique_dni` (`dni`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +99,7 @@ CREATE TABLE `datos_personales` (
 
 LOCK TABLES `datos_personales` WRITE;
 /*!40000 ALTER TABLE `datos_personales` DISABLE KEYS */;
-INSERT INTO `datos_personales` VALUES (1,'Medellin','Calle 54 # 86a-60 int. 207','alejocxc0609@hotmail.com','3044122036cx','1234','Adriana Yepes','1234','37498385'),(2,'Medellin','Calle 54 # 86a-60 int. 207','alejo0609@hotmail.com','3044122036','1234','Alejandro Perez','1234','8029742'),(3,'medellin','robledo','sandra@sandra.com','313672','1234','Sandra','1234','321');
+INSERT INTO `datos_personales` VALUES (7,'Medellin','carrera 50 94-123','gamersoccer700@gmail.com','344556696778','12345678','Pedro firu','12345678',1234456787),(11,'Medellin','Calle 54 # 86a-60 int. 207','alejocxc22222@hotmail.com','3044122036cx','1234','Coste Ubarnes','1234',37498005);
 /*!40000 ALTER TABLE `datos_personales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,11 +109,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detalle_adopcion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalle_adopcion` (
-  `iddetalleadopcion` int(11) NOT NULL AUTO_INCREMENT,
+  `iddetalleadopcion` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`iddetalleadopcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,15 +131,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `historia_animal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historia_animal` (
-  `idhistoriaanimal` int(11) NOT NULL AUTO_INCREMENT,
+  `idhistoriaanimal` int NOT NULL AUTO_INCREMENT,
   `chip` bit(1) NOT NULL,
   `estado_salud` text NOT NULL,
   `fecha_creado` datetime(6) NOT NULL,
   `fecha_modificado` datetime(6) NOT NULL,
   PRIMARY KEY (`idhistoriaanimal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,13 +157,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
-  `idroles` int(11) NOT NULL AUTO_INCREMENT,
+  `idroles` int NOT NULL AUTO_INCREMENT,
   `creado` datetime(6) NOT NULL,
   `modificado` datetime(6) NOT NULL,
   PRIMARY KEY (`idroles`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,17 +176,44 @@ LOCK TABLES `roles` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tienda`
+--
+
+DROP TABLE IF EXISTS `tienda`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tienda` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `compania` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cedula` (`cedula`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tienda`
+--
+
+LOCK TABLES `tienda` WRITE;
+/*!40000 ALTER TABLE `tienda` DISABLE KEYS */;
+INSERT INTO `tienda` VALUES (1,'TechWorld','Juan Pérez','100200300'),(2,'Supermercado El Sol','María Gómez','200300400'),(3,'Ferretería Los Andes','Carlos Ramírez','300400500'),(4,'Moda y Estilo','Ana Fernández','400500600'),(5,'Cafetería Delicias','Pedro López','500600700');
+/*!40000 ALTER TABLE `tienda` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tipo_animal`
 --
 
 DROP TABLE IF EXISTS `tipo_animal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_animal` (
-  `idtipoanimal` int(11) NOT NULL AUTO_INCREMENT,
+  `idtipoanimal` int NOT NULL AUTO_INCREMENT,
   `nombre_tipo_animal` varchar(155) NOT NULL,
   PRIMARY KEY (`idtipoanimal`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,12 +232,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tipo_documentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_documentos` (
-  `idtipodocumentos` int(11) NOT NULL AUTO_INCREMENT,
+  `idtipodocumentos` int NOT NULL AUTO_INCREMENT,
   `nombre_tipo_documento` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipodocumentos`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,14 +256,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tipo_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_usuario` (
-  `idTipoUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_tipo_usuario` varchar(100) NOT NULL,
-  `estado_tipoUsuario` tinyint(4) NOT NULL DEFAULT '1',
-  `estado_tipo_usuario` bit(1) NOT NULL,
+  `idTipoUsuario` int NOT NULL AUTO_INCREMENT,
+  `compania` varchar(100) NOT NULL,
+  `propietario` varchar(255) NOT NULL,
+  `dni` varchar(255) DEFAULT NULL,
+  `contacto` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `ciuadad` varchar(255) DEFAULT NULL,
+  `estado_tipo_us` bit(1) NOT NULL,
   PRIMARY KEY (`idTipoUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +277,7 @@ CREATE TABLE `tipo_usuario` (
 
 LOCK TABLES `tipo_usuario` WRITE;
 /*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
-INSERT INTO `tipo_usuario` VALUES (1,'Cuidador',1,_binary '\0'),(2,'Tienda',1,_binary '\0'),(3,'Albergue',1,_binary '\0'),(4,'Adoptante',1,_binary '\0'),(5,'Donante',1,_binary '\0');
+INSERT INTO `tipo_usuario` VALUES (1,'Cuidador','1','0','','','',NULL,_binary '\0'),(2,'Tienda','1','0','','','',NULL,_binary '\0'),(3,'Albergue','1','0','','','',NULL,_binary '\0'),(4,'Adoptante','1','0','','','',NULL,_binary '\0'),(5,'Donante','1','0','','','',NULL,_binary '\0'),(6,'Tienda La Esquina','Carlos Pérez','12345678A','3001234567','carlosperez@mail.com','Medellín',NULL,_binary '\0'),(7,'Supermercado El Centro','Ana Gómez','87654321B','3019876543','anagomez@mail.com','Bogotá',NULL,_binary '\0'),(8,'Boutique Elegancia','Luis Martínez','11223344C','3025556677','luismartinez@mail.com','Cali',NULL,_binary '\0'),(9,'ElectroHogar','Marta Rodríguez','44332211D','3034445566','martarodriguez@mail.com','Barranquilla',NULL,_binary '\0'),(10,'Papelería y Más','Pedro Ramírez','55667788E','3047778899','pedroramirez@mail.com','Cartagena',NULL,_binary '\0');
 /*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,12 +287,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tipo_vacuna`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_vacuna` (
-  `idvacunas` int(11) NOT NULL AUTO_INCREMENT,
+  `idvacunas` int NOT NULL AUTO_INCREMENT,
   `nombre_tipo_vacuna` varchar(155) NOT NULL,
   PRIMARY KEY (`idvacunas`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +301,7 @@ CREATE TABLE `tipo_vacuna` (
 
 LOCK TABLES `tipo_vacuna` WRITE;
 /*!40000 ALTER TABLE `tipo_vacuna` DISABLE KEYS */;
-INSERT INTO `tipo_vacuna` VALUES (1,'Rabia'),(2,'Moquillo'),(3,'Parvovirus'),(4,'Hepatitis Canina'),(5,'Leptospirosis'),(6,'Coronavirus Canino'),(7,'Bordetella'),(8,'Parainfluenza Canina'),(9,'Giardia'),(10,'Calicivirus Felino'),(11,'Rinotraqueitis Felina'),(12,'Panleucopenia Felina'),(13,'Leucemia Felina'),(14,'Peritonitis Infecciosa Felina'),(15,'Inmunodeficiencia Felina');
+INSERT INTO `tipo_vacuna` VALUES (1,'Rabia'),(2,'Moquillo'),(3,'Parvovirus'),(4,'Hepatitis Canina'),(5,'Leptospirosis'),(6,'Coronavirus Canino'),(7,'Bordetella'),(8,'Parainfluenza Canina'),(9,'Giardia'),(10,'Calicivirus Felino'),(11,'Rinotraqueitis Felina'),(12,'Panleucopenia Felina'),(13,'Leucemia Felina'),(14,'Peritonitis Infecciosa Felina'),(15,'Inmunodeficiencia Felina'),(16,'vvvvvvv');
 /*!40000 ALTER TABLE `tipo_vacuna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,15 +311,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
   `email` varchar(155) NOT NULL,
   `estado_usuario` bit(1) NOT NULL,
   `password` varchar(155) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `UK5171l57faosmj8myawaucatdw` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,4 +340,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-30 12:45:18
+-- Dump completed on 2025-04-05 10:28:05
