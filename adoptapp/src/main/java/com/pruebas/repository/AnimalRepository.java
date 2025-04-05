@@ -9,6 +9,8 @@ import java.util.List;
 public interface AnimalRepository extends JpaRepository<AnimalModel, Integer> {
     // Buscar los ultimos 10 animales disponibles
     List<AnimalModel> findTop10ByEstadoAnimalTrueOrderByIdAnimalDesc();
+    // Buscar los ultimos 3 animales disponibles
+    List<AnimalModel> findTop3ByEstadoAnimalTrueOrderByIdAnimalDesc();
     // Buscar animales disponibles
     List<AnimalModel> findByEstadoAnimalTrueOrderByIdAnimalDesc();
     // Buscar animales no disponibles

@@ -39,6 +39,10 @@ public class DatosPersonalesService {
         return Optional.empty(); // 🔹 Si la contraseña es incorrecta, retorna vacío.
     }
 
+    public Optional<DatosPersonalesModel> obtenerPorDni(long dni) {
+        return datosPersonalesRepository.findByDni(dni);
+    }
+
 
     public DatosPersonalesModel guardar(DatosPersonalesModel usuario) {
         // 🔹 Cambio: Cifrar la contraseña antes de guardarla en la BD.
@@ -49,6 +53,15 @@ public class DatosPersonalesService {
     public boolean eliminar(int id) {
         if (datosPersonalesRepository.existsById(id)) {
             datosPersonalesRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean eliminarPorDni(Long dni) {
+        Optional<DatosPersonalesModel> registro = datosPersonalesRepository.findByDni(dni);
+        if (registro.isPresent()) {
+            datosPersonalesRepository.delete(registro.get());
             return true;
         }
         return false;

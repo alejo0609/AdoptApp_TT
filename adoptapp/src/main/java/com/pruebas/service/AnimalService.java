@@ -17,6 +17,11 @@ public class AnimalService {
     public List<AnimalModel> obtenerUltimos10Animales() {
         return animalRepository.findTop10ByEstadoAnimalTrueOrderByIdAnimalDesc();
     }
+
+    // ✅ Obtiene los últimos 3 animales disponibles para adopción
+    public List<AnimalModel> obtenerUltimos3Animales() {
+        return animalRepository.findTop3ByEstadoAnimalTrueOrderByIdAnimalDesc();
+    }
     
     // ✅ Obtiene los animales disponibles para adopción
     public List<AnimalModel> obtenerAnimalesDisponibles() {

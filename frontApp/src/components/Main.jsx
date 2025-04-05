@@ -11,7 +11,7 @@ function Main() {
   const [animals, setAnimals] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/animal/ultimos") // Obtiene los últimos 10 animales
+    axios.get("http://localhost:8080/animal/ultimos3") // Obtiene los últimos animales
       .then(response => {
         console.log("Datos recibidos:", response.data); // Depuración
         setAnimals(response.data);
@@ -47,7 +47,7 @@ function Main() {
         
         {/* 🐾 Sección de Animales en Adopción */}
         <h2 className="text-3xl font-bold text-gray-800 mb-8">
-          🐾 Últimos 10 Animales en Adopción 🐾
+          🐾 Últimos 3 Animales en Adopción 🐾
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {animals.length > 0 ? animals.map((animal, index) => (

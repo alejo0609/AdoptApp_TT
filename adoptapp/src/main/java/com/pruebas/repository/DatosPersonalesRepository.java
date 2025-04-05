@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface DatosPersonalesRepository extends JpaRepository<DatosPersonalesModel, Integer> {
      Optional<DatosPersonalesModel> findByEmail(String email);
+     Optional<DatosPersonalesModel> findByDni(Long dni);
 }

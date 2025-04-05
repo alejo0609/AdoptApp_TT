@@ -15,7 +15,8 @@ function Navbar() {
         <li><Link to="/" className="hover:text-gray-200 font-bold">Inicio</Link></li>
         <li><Link to="/quienes-somos" className="hover:text-gray-200 font-bold">Quienes Somos</Link></li>
         <li><Link to="/adopta" className="hover:text-gray-200 font-bold">Adopta</Link></li>
-        <li><Link to="/register" className="hover:text-gray-200 font-bold">Cuidador</Link></li>
+        {/* <li><Link to="/register" className="hover:text-gray-200 font-bold">Cuidador</Link></li> */}
+        <li><Link to="/clientes" className="hover:text-gray-200 font-bold">Clientes</Link></li>
         <li><Link to="/tiendas" className="hover:text-gray-200 font-bold">Tiendas</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>

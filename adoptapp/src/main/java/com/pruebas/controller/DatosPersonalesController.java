@@ -19,7 +19,7 @@ public class DatosPersonalesController {
     @Autowired
     private DatosPersonalesService datosPersonalesService;
 
-    @GetMapping
+    @GetMapping()
     public List<DatosPersonalesModel> obtenerTodos() {
         return datosPersonalesService.obtenerTodos();
     }
@@ -32,6 +32,13 @@ public class DatosPersonalesController {
             ? ResponseEntity.ok(usuario) 
             : ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"mensaje\": \"Usuario no encontrado\"}");
     }
+
+    @GetMapping("/dni/{dni}")
+    public ResponseEntity<DatosPersonalesModel> obtenerPorDni(@PathVariable Long dni) {
+        Optional<DatosPersonalesModel> persona = datosPersonalesService.obtenerPorDni(dni);
+        return persona.map(ResponseEntity::ok)
+                  .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+ }
 
 
     @PostMapping
@@ -58,4 +65,8 @@ public class DatosPersonalesController {
     public String eliminar(@PathVariable int id) {
         return datosPersonalesService.eliminar(id) ? "Eliminado correctamente" : "No se encontró el ID";
     }
+    @DeleteMapping("/dni/{dni}")
+    public String eliminarPorDni(@PathVariable long dni) {
+        return datosPersonalesService.eliminarPorDni(dni) ? "Eliminado correctamente" : "No se encontró el ID";
+    } 
 }

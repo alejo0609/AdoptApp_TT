@@ -24,6 +24,14 @@ private AnimalService animalService;
 public List<AnimalModel> obtenerUltimos10Animales() {
 return animalService.obtenerUltimos10Animales();
 }
+
+// ✅ Obtener los últimos 3 animales registrados en el sistema
+@GetMapping("/ultimos3")
+public List<AnimalModel> obtenerUltimos3Animales() {
+return animalService.obtenerUltimos3Animales();
+}
+
+
 // ✅ Obtener los animales que se encuentren disponibles registrados en el sistema
 @GetMapping("/disponibles")
 public List<AnimalModel> obtenerAnimalesDisponibles() {

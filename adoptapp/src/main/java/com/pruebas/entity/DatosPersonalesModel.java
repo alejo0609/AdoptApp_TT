@@ -21,7 +21,7 @@ public void setIdDatosPersonales(Integer id) {
 private String name;
 
 @Column(nullable = false, length = 55, unique = true)
-private String dni;
+private Long dni;
 
 @Column(nullable = false, length = 255)
 private String direccion;
@@ -39,6 +39,7 @@ private String email;
 
 @Column(nullable = false, length = 155)
 private String password;
+
 
 
 }
