@@ -1,0 +1,13 @@
+ALTER TABLE tienda ADD barrio VARCHAR(100);
+DROP TABLE cuidador;
+INSERT INTO tienda (nombre, direccion, telefono, correo_electronico, sitio_web, password, ciudad, barrio) VALUES
+('Peluditos PetShop', 'Calle 50 #69-80', '3001234564', 'peluditos@pets.com', 'https://peluditos.com', 'peluditos123', 'Medellín', 'Laureles'),
+('Mundo Mascotas', 'Carrera 65 #34-90', '3001234565', 'contacto@mundomascotas.com', 'https://mundomascotas.com', 'mascotas2024', 'Medellín', 'El Poblado'),
+('Pet Paradise', 'Calle 55 #40-21', '3001234566', 'paraiso@pets.com', 'https://petparadise.com', 'paradisepet', 'Medellín', 'Belen'),
+('Zoolovers', 'Carrera 48 #19-50', '3001234567', 'zoo@lovers.com', 'https://zoolovers.com', 'zoo12345', 'Medellín', 'Buenos Aires'),
+('Pet Life', 'Calle 30A #70-10', '3001234568', 'info@petlife.com', 'https://petlife.com', 'life4567', 'Medellín', 'Aranjuez'),
+('Amigos Peludos', 'Carrera 52 #34-77', '3001234569', 'amigos@peludos.com', 'https://amigospeludos.com', 'peludos2024', 'Medellín', 'Castilla'),
+('Pet Zone', 'Calle 60 #52-20', '3001234570', 'zone@pet.com', 'https://petzone.com', 'zonepass123', 'Medellín', 'Manrique'),
+('Tienda PetLovers', 'Calle 123', '3001234567', 'contacto@petlovers.com', 'https://petlovers.com', 'miPasswo3', 'Medellín', 'San Javier'),
+('Mascotas Medellín', 'Carrera 78 #20-15', '3001234571', 'ventas@mascotasmed.com', 'https://mascotasmed.com', 'masco789', 'Medellín', 'Robledo'),
+('Animal Home', 'Calle 45 #55-12', '3001234572', 'animal@home.com', 'https://animalhome.com', 'homepet2024', 'Medellín', 'La América');
