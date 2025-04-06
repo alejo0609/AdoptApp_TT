@@ -1,217 +1,217 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { FaGoogle, FaFacebook, FaPaw } from "react-icons/fa";
 
-function Register() {
-  // Estado del formulario: los nombres deben coincidir con los de la entidad del backend
-  const [formData, setFormData] = useState({
-    name: "",
-    dni: "",
-    direccion: "",
-    ciudad: "",
-    telefono: "",
-    email: "",
-    password: "",
-    confirm_password: ""
-  });
+// Componente Input reutilizable
+const Input = ({ label, name, type = "text", value, onChange }) => (
+  <div className="mb-4 text-left">
+    <label className="block text-gray-700 font-semibold mb-1">{label}</label>
+    <input
+      type={type}
+      name={name}
+      value={value || ""}
+      onChange={onChange}
+      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+      required
+    />
+  </div>
+);
 
-  
+function RegistroGenerico() {
+  const { tipo } = useParams();
 
-  const [errors, setErrors] = useState("");
-  const [message, setMessage] = useState("");
-
-  // Manejar cambios en los inputs
-  const handleChange = (e) => {
-    setFormData({ 
-      ...formData, 
-      [e.target.name]: e.target.value 
-    });
+  const camposIniciales = {
+    usuario: {
+      name: "",
+      dni: "",
+      direccion: "",
+      ciudad: "",
+      telefono: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+    },
+    cuidador: {
+      name: "",
+      dni: "",
+      direccion: "",
+      ciudad: "",
+      telefono: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+    },
+    tienda: {
+      nombre: "",
+      direccion: "",
+      barrio: "",
+      ciudad: "",
+      telefono: "",
+      email: "",
+      sitio_web: "",
+      password: "",
+    },
+    mascota: {
+      nombre_animal: "",
+      raza: "",
+      edad: "",
+      imagen_animal: "",
+      estado_animal: "",
+      esterilizado: "",
+    },
   };
 
-  // Validar correo electrónico
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const [formData, setFormData] = useState({});
+  const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
 
-  // Manejar el envío del formulario
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    setFormData(camposIniciales[tipo] || {});
+  }, [tipo]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isValidEmail(formData.email)) {
-      setErrors("Por favor, introduce un correo válido.");
+    // Validar coincidencia de contraseñas si aplica
+    if ((tipo === "usuario" || tipo === "cuidador") && formData.password !== formData.confirm_password) {
+      setError("Las contraseñas no coinciden.");
       return;
     }
 
-    if (formData.password !== formData.confirm_password) {
-      setErrors("Las contraseñas no coinciden.");
-      return;
-    }
-
-    // Limpia errores previos
-    setErrors("");
-
-    // Enviar datos al backend
-    axios.post("http://localhost:8080/datos_personales", formData)
-      .then(response => {
-        console.log("Usuario registrado:", response.data);
-        setMessage("¡Registro exitoso!");
+    let endpoint = "";
+    switch (tipo) {
+      case "usuario":
         
-      })
-      .catch(error => {
-        console.error("Error en el registro:", error);
-        setMessage("Error en el registro. Por favor, inténtalo nuevamente.");
-      });
+      case "cuidador":
+        endpoint = "http://localhost:8080/datos_personales";
+        break;
+      case "tienda":
+        endpoint = "http://localhost:8080/tiendas";
+        break;
+      case "mascota":
+        endpoint = "http://localhost:8080/adopta";
+        break;
+      default:
+        setError("Tipo de registro no reconocido");
+        return;
+    }
+
+    try {
+      const datosAEnviar = { ...formData };
+      delete datosAEnviar.confirm_password; // quitar antes de enviar
+
+      await axios.post(endpoint, datosAEnviar);
+      setMensaje("Registro exitoso");
+      setError("");
+      setFormData(camposIniciales[tipo]);
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Ocurrió un error al registrar");
+      setMensaje("");
+    }
   };
 
-  // Métodos para autenticación social (ejemplo)
-  const handleGoogleSignIn = () => {
-    alert("Iniciar sesión con Google (Implementar con Firebase)");
-  };
-
-  const handleFacebookSignIn = () => {
-    alert("Iniciar sesión con Facebook (Implementar con Firebase)");
+  const renderCampos = () => {
+    switch (tipo) {
+      case "usuario":
+      case "cuidador":
+        return (
+          <>
+            <Input label="Nombre" name="name" value={formData.name} onChange={handleChange} />
+            <Input label="DNI" name="dni" value={formData.dni} onChange={handleChange} />
+            <Input label="Dirección" name="direccion" value={formData.direccion} onChange={handleChange} />
+            <Input label="Ciudad" name="ciudad" value={formData.ciudad} onChange={handleChange} />
+            <Input label="Teléfono" name="telefono" value={formData.telefono} onChange={handleChange} />
+            <Input label="Correo Electrónico" name="email" type="email" value={formData.email} onChange={handleChange} />
+            <Input label="Contraseña" name="password" type="password" value={formData.password} onChange={handleChange} />
+            <Input label="Confirmar Contraseña" name="confirm_password" type="password" value={formData.confirm_password} onChange={handleChange} />
+          </>
+        );
+      case "tienda":
+        return (
+          <>
+            <Input label="Nombre de la tienda" name="nombre" value={formData.nombre} onChange={handleChange} />
+            <Input label="Dirección" name="direccion" value={formData.direccion} onChange={handleChange} />
+            <Input label="Barrio" name="barrio" value={formData.barrio} onChange={handleChange} />
+            <Input label="Ciudad" name="ciudad" value={formData.ciudad} onChange={handleChange} />
+            <Input label="Teléfono" name="telefono" value={formData.telefono} onChange={handleChange} />
+            <Input label="Correo Electrónico" name="email" type="email" value={formData.email} onChange={handleChange} />
+            <Input label="Sitio Web" name="sitio_web" value={formData.sitio_web} onChange={handleChange} />
+            <Input label="Contraseña" name="password" type="password" value={formData.password} onChange={handleChange} />
+          </>
+        );
+      case "mascota":
+        return (
+          <>
+            <Input label="Nombre del Animal" name="nombre_animal" value={formData.nombre_animal} onChange={handleChange} />
+            <Input label="Raza" name="raza" value={formData.raza} onChange={handleChange} />
+            <Input label="Edad" name="edad" type="number" value={formData.edad} onChange={handleChange} />
+            <Input label="Imagen del Animal" name="imagen_animal" value={formData.imagen_animal} onChange={handleChange} />
+            <div className="mb-4 text-left">
+              <label className="block text-gray-700 font-semibold mb-1">Estado del Animal</label>
+              <select
+                name="estado_animal"
+                value={formData.estado_animal || ""}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-md"
+                required
+              >
+                <option value="">Selecciona estado</option>
+                <option value="1">Disponible</option>
+                <option value="0">Adoptado</option>
+              </select>
+            </div>
+            <div className="mb-4 text-left">
+              <label className="block text-gray-700 font-semibold mb-1">Esterilizado</label>
+              <select
+                name="esterilizado"
+                value={formData.esterilizado || ""}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-md"
+                required
+              >
+                <option value="">Selecciona</option>
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </>
+        );
+      default:
+        return <p className="text-red-500">Tipo de formulario no reconocido</p>;
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-100">
-      <div className="bg-white m-10 p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-        {/* Encabezado Animalista */}
-        <div className="flex justify-center items-center mb-6">
-          <FaPaw className="text-green-500 text-4xl mr-2" />
-          <h2 className="text-2xl font-bold text-green-700">Únete a la familia animalista</h2>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-green-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-4 text-center text-green-700">
+          Registrar {tipo}
+        </h2>
 
-        {/* Mensaje de error o éxito */}
-        {errors && <p className="text-red-500 text-sm mb-4">{errors}</p>}
-        {message && <p className="text-green-500 text-sm mb-4">{message}</p>}
+        {mensaje && <p className="text-green-500 text-center mb-4">{mensaje}</p>}
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
-        {/* Formulario de Registro */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-gray-700 font-semibold">Nombre completo</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Tu nombre"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Cédula (DNI)</label>
-            <input
-              type="number"
-              name="dni"
-              value={formData.dni}
-              onChange={handleChange}
-              required
-              placeholder="Tu cédula"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Dirección</label>
-            <input
-              type="text"
-              name="direccion"
-              value={formData.direccion}
-              onChange={handleChange}
-              required
-              placeholder="Tu dirección"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Ciudad</label>
-            <input
-              type="text"
-              name="ciudad"
-              value={formData.ciudad}
-              onChange={handleChange}
-              required
-              placeholder="Tu ciudad"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Teléfono</label>
-            <input
-              type="text"
-              name="telefono"
-              value={formData.telefono}
-              onChange={handleChange}
-              required
-              placeholder="Tu teléfono"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Correo Electrónico</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="tucorreo@example.com"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              placeholder="******"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 font-semibold">Confirmar Contraseña</label>
-            <input
-              type="password"
-              name="confirm_password"
-              value={formData.confirm_password}
-              onChange={handleChange}
-              required
-              placeholder="******"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-
-          {/* Botón de Registro */}
+        <form onSubmit={handleSubmit}>
+          {renderCampos()}
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-md font-bold hover:bg-green-700 transition"
+            className="w-full bg-green-600 text-white py-2 rounded-md font-bold hover:bg-green-700 transition mt-4"
           >
-            Registrarse
+            Registrar
           </button>
         </form>
-
-        {/* Línea divisoria */}
-        <div className="my-4 text-gray-500">O</div>
-
-        {/* Botones de Google y Facebook */}
-        <div className="flex justify-center space-x-6">
-          <button
-            onClick={handleGoogleSignIn}
-            className="text-red-600 text-3xl hover:text-red-700 transition"
-          >
-            <FaGoogle />
-          </button>
-          <button
-            onClick={handleFacebookSignIn}
-            className="text-blue-600 text-3xl hover:text-blue-700 transition"
-          >
-            <FaFacebook />
-          </button>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default RegistroGenerico;

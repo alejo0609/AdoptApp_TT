@@ -67,13 +67,13 @@ function Main() {
                 <p className={`text-sm font-bold mt-2 ${animal.estadoAnimal ? "text-green-500" : "text-red-500"}`}>
                   {animal.estado_animal ? "No disponible" : "Disponible"}
                 </p>
-                
-                <Link 
-                  to={`/formulario-adopcion/${animal.idAnimal}`} 
-                  className="btn-adoptar"
-                >
-                    Adoptar
-                  </Link>
+                  <Link 
+                to={`/formulario-adopcion/${animal.idAnimal}`} 
+                className="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
+              >
+                Adoptar
+              </Link>
+
               </div>
             </div>
           )) : <p className="text-gray-600">No hay animales disponibles.</p>}

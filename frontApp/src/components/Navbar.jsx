@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import cogs_result from "../assets/cogs_result.svg";
-
+import Logo from "/aset/LogoAdoptapp.png";
 function Navbar() {
   return (
     <nav className="bg-blue-600 text-white p-4 flex items-center justify-between">
       {/* Logo a la izquierda */}
       <div>
-        <img className="w-16 h-16 rounded-full" src={cogs_result} alt="logo-adopta" />
+        <img className="w-16 h-16 rounded-full" src={Logo} alt="logo-adopta" />
       </div>
 
       {/* Menú centrado */}
@@ -16,11 +16,12 @@ function Navbar() {
         <li><Link to="/quienes-somos" className="hover:text-gray-200 font-bold">Quienes Somos</Link></li>
         <li><Link to="/adopta" className="hover:text-gray-200 font-bold">Adopta</Link></li>
         {/* <li><Link to="/register" className="hover:text-gray-200 font-bold">Cuidador</Link></li> */}
-        <li><Link to="/clientes" className="hover:text-gray-200 font-bold">Clientes</Link></li>
+        {/* <li><Link to="/clientes" className="hover:text-gray-200 font-bold">Clientes</Link></li> */ }
         <li><Link to="/tiendas" className="hover:text-gray-200 font-bold">Tiendas</Link></li>
-        <li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li>
-        <li><Link to="/register" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
-        <li><Link to="/fomulario-adopcion" className="hover:text-gray-200 font-bold">FORMULARIO</Link></li>
+        {/*<li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li> */}
+        <li><Link to="/cuidador" className="hover:text-gray-200 font-bold">Cuidador</Link></li>
+        <li><Link to="/contactanos" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
+        
         {/*<li><Link to="/animales" className="hover:text-gray-200 font-bold">Animales</Link></li>*/}
       </ul>
 

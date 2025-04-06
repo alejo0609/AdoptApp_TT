@@ -1,27 +1,32 @@
-import React from "react";
+import React from 'react';
 
-function FiltroBarrios({ tiendas = [], onFiltrar }) {
-  // Extraer los barrios únicos
-  const barriosUnicos = [...new Set(tiendas.map(t => t.barrio))];
+function FiltroBarrios({ tiendas, setFiltroBarrio }) {
+  // Extraemos los barrios únicos
+  const barriosUnicos = [...new Set(tiendas.map(t => t.barrio?.toLowerCase()))].filter(Boolean);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value.toLowerCase();
+    setFiltroBarrio(value);
+  };
 
   return (
     <div className="mb-4">
-      <label className="block text-gray-700 font-semibold mb-2">Filtrar por barrio:</label>
-      <select
-        onChange={(e) => onFiltrar(e.target.value)}
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
-      >
-        <option value="">Todos</option>
+      <label htmlFor="barrio">Filtrar por barrio:</label>
+      <input
+        list="sugerencias-barrios"
+        type="text"
+        id="barrio"
+        placeholder="Escribe un barrio"
+        onChange={handleInputChange}
+        className="border rounded p-2 w-full"
+      />
+      <datalist id="sugerencias-barrios">
         {barriosUnicos.map((barrio, i) => (
-          <option key={i} value={barrio}>
-            {barrio}
-          </option>
+          <option key={i} value={barrio} />
         ))}
-      </select>
+      </datalist>
     </div>
   );
 }
 
 export default FiltroBarrios;
-
-  
