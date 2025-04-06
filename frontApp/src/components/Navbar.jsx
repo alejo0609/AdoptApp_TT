@@ -20,6 +20,7 @@ function Navbar() {
         <li><Link to="/tiendas" className="hover:text-gray-200 font-bold">Tiendas</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Dar en adopcion</Link></li>
         <li><Link to="/register" className="hover:text-gray-200 font-bold">Contáctanos</Link></li>
+        <li><Link to="/fomulario-adopcion" className="hover:text-gray-200 font-bold">FORMULARIO</Link></li>
         {/*<li><Link to="/animales" className="hover:text-gray-200 font-bold">Animales</Link></li>*/}
       </ul>
 

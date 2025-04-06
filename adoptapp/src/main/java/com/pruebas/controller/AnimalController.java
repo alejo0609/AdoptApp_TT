@@ -25,10 +25,10 @@ public List<AnimalModel> obtenerUltimos10Animales() {
 return animalService.obtenerUltimos10Animales();
 }
 
-// ✅ Obtener los últimos 3 animales registrados en el sistema
-@GetMapping("/ultimos3")
-public List<AnimalModel> obtenerUltimos3Animales() {
-return animalService.obtenerUltimos3Animales();
+// ✅ Obtener los últimos 4 animales registrados en el sistema
+@GetMapping("/ultimos4")
+public List<AnimalModel> obtenerUltimos4Animales() {
+return animalService.obtenerUltimos4Animales();
 }
 
 

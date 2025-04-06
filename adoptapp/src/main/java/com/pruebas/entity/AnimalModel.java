@@ -37,4 +37,11 @@ public class AnimalModel {
     @Column(nullable = false, length = 255)
     @JsonProperty("imagen_animal")
     private String imagenAnimal;
+
+    @Column(name = "correo_tienda")
+    private String correoTienda;
+
+   
+
+
 }

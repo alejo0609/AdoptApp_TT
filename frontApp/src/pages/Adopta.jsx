@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Animales = () => {
   const [data, setData] = useState([]);
@@ -31,6 +32,12 @@ const Animales = () => {
               <p><strong>Raza:</strong> {animal.raza}</p>
               <p><strong>Edad:</strong> {animal.edad} años</p>
               <p><strong>Estado:</strong> {animal.estadoAnimal ? "Disponible" : "No disponible"}</p>
+              <Link 
+                  to={`/formulario-adopcion/${animal.idAnimal}`} 
+                  className="btn-adoptar"
+                >
+                  Adoptar
+              </Link>
             </div>
           ))}
         </div>

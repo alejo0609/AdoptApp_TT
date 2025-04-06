@@ -2,6 +2,8 @@ package com.pruebas.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
+
 
 @Entity
 @Table(name = "tienda")
@@ -37,4 +39,9 @@ public class TiendaModel {
 
     @Column(nullable = false, length = 100)
     private String barrio;
+
+ 
 }
+
+
+

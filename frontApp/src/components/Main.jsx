@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPaw, FaNewspaper } from "react-icons/fa";
+import AnimalCard from "../components/AnimalCard";
+import { Link } from "react-router-dom";
+
 
 // Importar imágenes de noticias desde assets
 import news1 from "../assets/news1.jpg";
@@ -11,7 +14,7 @@ function Main() {
   const [animals, setAnimals] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/animal/ultimos3") // Obtiene los últimos animales
+    axios.get("http://localhost:8080/animal/ultimos4") // Obtiene los últimos 10 animales
       .then(response => {
         console.log("Datos recibidos:", response.data); // Depuración
         setAnimals(response.data);
@@ -47,7 +50,7 @@ function Main() {
         
         {/* 🐾 Sección de Animales en Adopción */}
         <h2 className="text-3xl font-bold text-gray-800 mb-8">
-          🐾 Últimos 3 Animales en Adopción 🐾
+          🐾 Últimos 4 Animales en Adopción 🐾
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {animals.length > 0 ? animals.map((animal, index) => (
@@ -62,11 +65,15 @@ function Main() {
                 <p className="text-gray-600">Edad: {animal.edad} años</p>
                 <p className="text-gray-600">Raza: {animal.raza}</p>
                 <p className={`text-sm font-bold mt-2 ${animal.estadoAnimal ? "text-green-500" : "text-red-500"}`}>
-                  {animal.estadoAnimal ? "Disponible" : "No disponible"}
+                  {animal.estado_animal ? "No disponible" : "Disponible"}
                 </p>
-                <button className="mt-3 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-                  Adoptar
-                </button>
+                
+                <Link 
+                  to={`/formulario-adopcion/${animal.idAnimal}`} 
+                  className="btn-adoptar"
+                >
+                    Adoptar
+                  </Link>
               </div>
             </div>
           )) : <p className="text-gray-600">No hay animales disponibles.</p>}

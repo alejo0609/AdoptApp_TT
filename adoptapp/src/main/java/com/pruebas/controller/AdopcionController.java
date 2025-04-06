@@ -4,9 +4,12 @@ import com.pruebas.model.AdopcionModel;
 import com.pruebas.service.AdopcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
+
+
+
 
 /**
  * Controlador para gestionar las adopciones.
@@ -18,7 +21,8 @@ import java.util.Optional;
  * @author Jorge Andres Restrepo Cataño CC 98.648.720
  */
 @RestController
-@RequestMapping("/adopciones")
+@CrossOrigin(origins = "*")
+@RequestMapping("/adopcion")
 public class AdopcionController {
 
     @Autowired
@@ -29,10 +33,18 @@ public class AdopcionController {
      * 
      * @return Lista de todas las adopciones.
      */
+
+
+
     @GetMapping
-    public List<AdopcionModel> getAllAdopcions() {
-        return adopcionService.findAll();
+public ResponseEntity<?> getAllAdopcions() {
+    try {
+        return ResponseEntity.ok(adopcionService.findAll());
+    } catch (Exception e) {
+        e.printStackTrace(); // Muestra en consola el error exacto
+        return ResponseEntity.status(500).body("Error al obtener adopciones: " + e.getMessage());
     }
+}
 
     /**
      * Obtiene una adopción específica por su ID.
@@ -46,14 +58,19 @@ public class AdopcionController {
     }
 
     /**
-     * Crea una nueva adopción.
-     * 
-     * @param adopcion Datos de la adopción a registrar.
-     * @return La adopción creada.
-     */
+    * Registra una nueva adopción y envía un correo de agradecimiento.
+    * 
+    * @param adopcion Datos de la adopción a registrar.
+    * @return Respuesta indicando éxito o error.
+    */
     @PostMapping
-    public AdopcionModel createAdopcion(@RequestBody AdopcionModel adopcion) {
-        return adopcionService.save(adopcion);
+    public ResponseEntity<String> registrarAdopcion(@RequestBody AdopcionModel adopcion) {
+        try {
+            adopcionService.guardarAdopcion(adopcion);
+            return ResponseEntity.ok("Formulario de adopción registrado con éxito.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al registrar el formulario: " + e.getMessage());
+        }
     }
 
     /**
@@ -79,3 +96,7 @@ public class AdopcionController {
         adopcionService.deleteById(id);
     }
 }
+
+
+
+

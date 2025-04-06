@@ -11,6 +11,9 @@ import Adopta from "./pages/Adopta";
 import QuienesSomos from "./pages/QuienesSomos";
 import Clientes from "./pages/Clientes";
 import Contactanos from "./pages/Contactanos";
+import FormularioAdopcion from "./components/FormularioAdopcion";
+
+
 
 function App() {
   return (
@@ -28,6 +31,12 @@ function App() {
         <Route path="/clientes" element={<Clientes />} />
         <Route path="/registro/usuario" element={<Register />} />
         <Route path="/contactanos" element={<Contactanos />} />
+        <Route
+                path="/formulario-adopcion/:idAnimalSeleccionado"
+                element={<FormularioAdopcion />}
+              />
+      
+
 
       </Routes>
       <Footer />
